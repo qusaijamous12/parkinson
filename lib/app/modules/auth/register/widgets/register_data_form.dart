@@ -6,9 +6,12 @@ import '../../../../data/controller/login_controller.dart';
 import '../../../../shared/contstant/color_manager.dart';
 import '../../../../shared/helper/app_regx.dart';
 import '../../../../shared/utils/text_utils.dart';
+import '../../../../shared/utils/utils.dart';
 import '../../../../shared/widget/my_button.dart';
 import '../../../../shared/widget/my_text_field.dart';
 import '../../login/widget/password_terms.dart';
+import 'package:toastification/toastification.dart';
+
 
 
 class RegisterDataForm extends StatefulWidget {
@@ -32,7 +35,7 @@ class _RegisterDataFormState extends State<RegisterDataForm> {
   final phoneController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final _userController = Get.find<UserController>(tag: 'user_controller');
-  final _selectedGender=RxString('Male');
+  final _selectedGender = RxString('male');
 
   @override
   void initState() {
@@ -55,85 +58,88 @@ class _RegisterDataFormState extends State<RegisterDataForm> {
       child: Column(
         children: [
           MyTextField(
-            hintText: 'name',
+            hintText: 'name'.tr,
             textInputType: TextInputType.text,
             controller: nameController,
             validate: (value) {
               if (TextUtils.isEmpty(value)) {
-                return 'Name is Required';
+                return 'name_is_required'.tr;
               }
               return null;
             },
           ),
           const SizedBox(height: 10),
           MyTextField(
-            hintText: 'email',
+            hintText: 'email'.tr,
             textInputType: TextInputType.emailAddress,
             controller: emailController,
             validate: (value) {
               if (AppRegex.isValidEmail(emailController.text)) {
                 return null;
               } else {
-                return 'Please enter validate email';
+                return 'please_enter_validate_email'.tr;
               }
             },
           ),
           const SizedBox(height: 10),
           MyTextField(
-            hintText: 'phone',
+            hintText: 'phone'.tr,
             textInputType: TextInputType.phone,
             controller: phoneController,
             validate: (value) {
               if (TextUtils.isEmpty(value)) {
-                return 'Phone is required';
+                return 'phone_required'.tr;
               }
               return null;
             },
           ),
           const SizedBox(height: 10),
-          Obx(()=>Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 10),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                    color: ColorManager.greyColor
-                )
-            ),
-            child: DropdownButton<String>(
-              dropdownColor: Colors.white,
+          Obx(() =>
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12, vertical: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        color: ColorManager.greyColor
+                    )
+                ),
+                child: DropdownButton<String>(
+                  dropdownColor: Colors.white,
 
-              value: _selectedGender.value,
-              style:const TextStyle(
-                  color: Colors.black
-              ),
-              hint: const Text(
-                'Select Gender',
-                style: TextStyle(color: Colors.black),
-              ),
-              icon: const Icon(Icons.arrow_drop_down, color: Colors.black),
-              isExpanded: true,
-              underline: Container(),
-              items: ['Male', 'Female'].map((String gender) {
-                return DropdownMenuItem<String>(
-                  value: gender,
-                  child: Text(
-                    gender,
-                    style: const TextStyle(color: Colors.black),
+                  value: _selectedGender.value,
+                  style: const TextStyle(
+                      color: Colors.black
                   ),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                _selectedGender(newValue);
-              },
-            ),
-          )),
+                  hint: const Text(
+                    'Select Gender',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  icon: const Icon(Icons.arrow_drop_down, color: Colors.black),
+                  isExpanded: true,
+                  underline: Container(),
+                  items: ['male', 'female'].map((String gender) {
+                    return DropdownMenuItem<String>(
+                      value: gender,
+                      child: Text(
+                        gender.tr,
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    _selectedGender(newValue);
+                  },
+                ),
+              )),
 
           const SizedBox(height: 10),
           MyTextField(
-            hintText: 'password',
-            textInputType: TextInputType.phone,
+            hintText: 'password'.tr,
+            textInputType: TextInputType.text,
             controller: passwordController,
+            isPassword: true,
             validate: (value) {
               if (hasLowerCase &&
                   hasUpperCase &&
@@ -142,19 +148,20 @@ class _RegisterDataFormState extends State<RegisterDataForm> {
                   atLeast8Charcter) {
                 return null;
               }
-              return 'Please follow the password terms';
+              return 'password_terms'.tr;
             },
           ),
           const SizedBox(height: 10),
           MyTextField(
-            hintText: 'confirm password',
-            textInputType: TextInputType.phone,
+            hintText: 'confirm_password'.tr,
+            textInputType: TextInputType.text,
+            isPassword: true,
             controller: confirmPasswordController,
             validate: (value) {
               if (passwordController.text == confirmPasswordController.text) {
                 return null;
               }
-              return 'The confirm password must be like password';
+              return 'the_confirm_password'.tr;
             },
           ),
 
@@ -171,17 +178,17 @@ class _RegisterDataFormState extends State<RegisterDataForm> {
           const SizedBox(height: 20),
           MyBtn(
             onTap: () async {
-              // if(_formKey.currentState?.validate()??false){
-              //   await _userController.createAccount(
-              //       email:emailController.text ,
-              //       name: nameController.text,
-              //       password: passwordController.text,
-              //       phoneNumber: phoneController.text,
-              //       gender: 'Male');
-              // }
+              if (_formKey.currentState?.validate() ?? false) {
+               await  _userController.createAccount(
+                   email: emailController.text,
+                    name: nameController.text,
+                    password: confirmPasswordController.text,
+                    phoneNumber: phoneController.text,
+                    gender:_selectedGender.value);
+              }
 
             },
-            title: 'Register',
+            title: 'register'.tr,
           ),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../shared/contstant/color_manager.dart';
 import '../../../../shared/contstant/style_manager.dart';
 
@@ -12,19 +13,20 @@ class TermsAndConditions extends StatelessWidget {
         text: TextSpan(
             children: [
               TextSpan(
-                  text: 'By logging, you agree to our',
+                  text: 'by_logging'.tr,
                   style: getRegulerTextStyle(color: ColorManager.lightGrey,fontSize: 14)
               ),
               TextSpan(
-                  text: ' Terms & Conditions',
+                  text: ' ${'terms_conditions'.tr}',
                   style: getRegulerTextStyle(color: Colors.black,fontSize: 14)
               ),
               TextSpan(
-                  text: ' and',
+                  text: ' ${'and'.tr}',
                   style: getRegulerTextStyle(color: ColorManager.lightGrey,fontSize: 14)
               ),
               TextSpan(
-                  text: ' PrivacyPolicy.',
+                  text: ' ${'privacy_policy'.tr}',
+
                   style: getRegulerTextStyle(color: Colors.black,fontSize: 14)
               ),
             ]

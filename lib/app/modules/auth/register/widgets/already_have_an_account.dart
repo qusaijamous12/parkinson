@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../../routes/route_manager.dart';
 import '../../../../shared/contstant/color_manager.dart';
 import '../../../../shared/contstant/style_manager.dart';
+import '../../login/login.dart';
 
 
 class AlreadyHaveAnAccount extends StatelessWidget {
@@ -13,12 +16,13 @@ class AlreadyHaveAnAccount extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Already have an account yet?',
+          'already_have'.tr,
           style: getRegulerTextStyle(color: Colors.black),
         ),
         TextButton(onPressed: (){
+          RouteManager.offAll(const LoginScreen());
         }, child: Text(
-          'Sign In',
+          'sign_in'.tr,
           style: getRegulerTextStyle(color: ColorManager.kPrimary),
         ))
       ],

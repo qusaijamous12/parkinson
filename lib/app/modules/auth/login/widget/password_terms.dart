@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../shared/contstant/color_manager.dart';
 import '../../../../shared/contstant/style_manager.dart';
 import '../../../../shared/contstant/values_manager.dart';
@@ -20,11 +21,11 @@ class PasswordTerms extends StatelessWidget {
     return Column(
       spacing: AppPadding.kPadding/4,
       children: [
-        buildPasswordTermsRow(title: 'At least 1 lowercase letter', passwordCase:hasLowerCase),
-        buildPasswordTermsRow(title: 'At least 1 uppercase letter', passwordCase:hasUpperCase),
-        buildPasswordTermsRow(title: 'At least 1 special character', passwordCase:hasSpecialCharacter),
-        buildPasswordTermsRow(title: 'At least 1 number', passwordCase:hasANumber),
-        buildPasswordTermsRow(title: 'At least 8 character long', passwordCase:atLeast8Charcter),
+        buildPasswordTermsRow(title: 'lowercase_letter', passwordCase:hasLowerCase),
+        buildPasswordTermsRow(title: 'uppercase_letter', passwordCase:hasUpperCase),
+        buildPasswordTermsRow(title: 'least_special_character', passwordCase:hasSpecialCharacter),
+        buildPasswordTermsRow(title: 'number', passwordCase:hasANumber),
+        buildPasswordTermsRow(title: 'character_long', passwordCase:atLeast8Charcter),
 
       ],
     );
@@ -40,7 +41,7 @@ class PasswordTerms extends StatelessWidget {
           ),
 
           Text(
-            title,
+            title.tr,
             style: getRegulerTextStyle(
                 color: Colors.black,
                 fontSize: FontSizeManager.fs14,

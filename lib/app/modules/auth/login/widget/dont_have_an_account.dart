@@ -14,14 +14,13 @@ class DontHaveAnAccount extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Don\'t have an Account?',
+          'dont_have_account'.tr,
           style: getRegulerTextStyle(color: Colors.black),
         ),
         TextButton(onPressed: (){
           Get.to(()=>const RegisterScreen());
-
         }, child: Text(
-          'Sign Up',
+          'sign_up'.tr,
           style: getRegulerTextStyle(color: ColorManager.kPrimary),
         ))
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../shared/contstant/color_manager.dart';
 import '../../../shared/contstant/image_manager.dart';
 import '../../../shared/contstant/style_manager.dart';
@@ -32,7 +33,7 @@ class DoctorWithShadow extends StatelessWidget {
           left: 0,
           right: 0,
           child: Text(
-            'Best Doctor Appointment App',
+            'best_doctor_appointment_app'.tr,
               textAlign: TextAlign.center,
               style:getBoldTextStyle(color: ColorManager.kPrimary,fontSize: 22) ,
           ),

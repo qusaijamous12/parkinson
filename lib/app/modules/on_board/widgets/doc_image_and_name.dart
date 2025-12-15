@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import '../../../shared/contstant/image_manager.dart';
 import '../../../shared/contstant/style_manager.dart';
 import '../../../shared/contstant/values_manager.dart';
@@ -19,7 +20,7 @@ class DocImageAndName extends StatelessWidget {
 
           SvgPicture.asset(SvgManager.docLogo),
           Text(
-            'Parkinson',
+            'parkinson'.tr,
             style:getMediumTextStyle(fontSize: 25, color: Colors.black),
 
 

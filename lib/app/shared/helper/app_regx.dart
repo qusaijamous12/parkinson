@@ -1,5 +1,6 @@
 
 class AppRegex {
+
   static bool hasLowercase(String text) {
     RegExp regex = RegExp(r'[a-z]');
     return regex.hasMatch(text);

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 import '../../../../shared/contstant/color_manager.dart';
 import '../../../../shared/contstant/style_manager.dart';
@@ -17,7 +18,7 @@ class OrSignInWith extends StatelessWidget {
           ),
         ),
         Text(
-          '  Or sign in with  ',
+          '  ${'or_sign_with'.tr}  ',
           style: getRegulerTextStyle(color: ColorManager.lightGrey),
         ),
         Expanded(
