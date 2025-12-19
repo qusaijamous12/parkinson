@@ -8,12 +8,6 @@ import '../../modules/profile_screen/profile_screen.dart';
 import '../../shared/utils/utils.dart';
 
 class AppController extends GetxController{
-  final screens=const [
-    HomeScreen(),
-    ListChatScreen(),
-    ProfileScreen()
-  ];
-  final currentIndex=RxInt(0);
 
   void changeLanguage(){
 
@@ -24,7 +18,5 @@ class AppController extends GetxController{
     else
       Get.updateLocale(const Locale('ar'));
   }
-
-
 
 }

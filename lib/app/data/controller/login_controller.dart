@@ -3,9 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:toastification/toastification.dart';
-
 import '../../modules/auth/login/login.dart';
-import '../../modules/main_tab_bar.dart';
+import '../../modules/home_screen/home_screen.dart';
 import '../../routes/route_manager.dart';
 import '../../shared/utils/utils.dart';
 import '../enum/data_status.dart';
@@ -38,7 +37,7 @@ class UserController extends GetxController {
           Utils.showToast(title: 'Login Success', type: ToastificationType.success);
 
           loginStatus(ApiStatus.success);
-          RouteManager.offAll(const MainTabBar());
+          RouteManager.offAll(const HomeScreen());
         }
       } else {
         loginStatus(ApiStatus.failure);
@@ -196,7 +195,7 @@ class UserController extends GetxController {
       _userModel(currentUser);
 
       loginStatus(ApiStatus.success);
-      RouteManager.offAll(const MainTabBar());
+      RouteManager.offAll(const HomeScreen());
       return true;
     } catch (error) {
       print('Google Sign-In Error: $error');

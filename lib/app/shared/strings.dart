@@ -47,6 +47,23 @@ class Strings extends Translations{
       'the_confirm_password':'يجب أن تتطابق كلمة المرور المؤكدة مع كلمة المرور',
       'already_have':'هل لديك حساب بالفعل؟',
       'sign_in':'تسجيل الدخول',
+      'hi':'مرحبا',
+      'find_your_doctor':'اعثر على طبيبك',
+      'search':'ابحث.....',
+      'chat_with_doctors':'استشر الأطباء',
+      'our_services':'خدماتنا',
+      'test_your_self_now':'اختبر صحتك الآن',
+      'book_now':'احجز الآن مع أفضل الأطباء',
+      'populars_doctors':'اشهر الدكاترة',
+      'see_all':'عرض الكل',
+
+
+
+
+
+
+
+
 
 
 
@@ -67,6 +84,15 @@ class Strings extends Translations{
 
     },
     'en':{
+      'see_all':'See All',
+      'populars_doctors':'Populars Doctors',
+      'book_now':'Book now with the best doctors',
+      'test_your_self_now':'Test Your Self Now',
+      'our_services':'Our Services',
+      'chat_with_doctors':'Chat With Doctors',
+      'search':'Search.....',
+      'find_your_doctor':'Find Your Doctor',
+      'hi':'Hi',
       'sign_in':'Sign In',
       'already_have':'Already have an account yet?',
       'the_confirm_password':'The confirm password must be like password',
