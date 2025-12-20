@@ -56,35 +56,25 @@ class Strings extends Translations{
       'book_now':'احجز الآن مع أفضل الأطباء',
       'populars_doctors':'اشهر الدكاترة',
       'see_all':'عرض الكل',
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      'search_screen':'شاشة البحث',
+      'sorry_find':'عذرًا، لم نتمكن من العثور على أي نتائج تطابق بحثك.',
+  'doctor_details':' تفاصيل الطبيب',
+      'book_now_':'احجز الآن',
+      'services':'الخدمات',
+      'patient_care':' رعاية المرضى يجب أن تكون الأولوية القصوى.',
 
 
 
 
     },
     'en':{
-      'see_all':'See All',
+      'patient_care':'Patient care should be the number one priority.',
+  'services':'Services',
+  'book_now_':'Book Now',
+      'doctor_details':'Doctor Details',
+  'sorry_find':'Sorry, we couldn’t find anything that matches your search.',
+  'search_screen':'Search Screen',
+  'see_all':'See All',
       'populars_doctors':'Populars Doctors',
       'book_now':'Book now with the best doctors',
       'test_your_self_now':'Test Your Self Now',

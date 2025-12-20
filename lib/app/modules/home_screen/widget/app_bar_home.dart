@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/controller/login_controller.dart';
-import '../../../../shared/contstant/color_manager.dart';
-import '../../../../shared/contstant/style_manager.dart';
-import '../../../../shared/contstant/values_manager.dart';
-import '../../../../shared/widget/search_text_field.dart';
+import '../../../data/controller/login_controller.dart';
+import '../../../routes/route_manager.dart';
+import '../../../shared/contstant/color_manager.dart';
+import '../../../shared/contstant/style_manager.dart';
+import '../../../shared/contstant/values_manager.dart';
+import '../../../shared/widget/search_text_field.dart';
+import '../../search_screen/index.dart';
 
 class AppBarHome extends StatelessWidget {
   final void Function()? onTapMenu;
@@ -85,15 +87,22 @@ class AppBarHome extends StatelessWidget {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsetsDirectional.symmetric(
-            horizontal: AppPadding.kPadding,
-            vertical: AppPadding.kPadding,
-          ),
-          child: SearchTextField(
-            hintText: 'search'.tr,
-            textInputType: TextInputType.text,
-            controller: TextEditingController(),
+        GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: ()=>Get.to(const SearchDoctorsScreen()),
+          child: Padding(
+            padding: const EdgeInsetsDirectional.symmetric(
+              horizontal: AppPadding.kPadding,
+              vertical: AppPadding.kPadding,
+            ),
+            child: IgnorePointer(
+              ignoring: true,
+              child: SearchTextField(
+                hintText: 'search'.tr,
+                textInputType: TextInputType.text,
+                controller: TextEditingController(),
+              ),
+            ),
           ),
         ),
       ],

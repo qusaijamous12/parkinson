@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../data/controller/login_controller.dart';
-import '../../../../../shared/contstant/color_manager.dart';
+import '../../../data/controller/login_controller.dart';
+import '../../../shared/contstant/color_manager.dart';
 
 class DrawerHomeScreen extends StatelessWidget {
   const DrawerHomeScreen({super.key});

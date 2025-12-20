@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/controller/app_controller.dart';
 import '../../shared/contstant/values_manager.dart';
-import 'widget/app_bar_home/index.dart';
-import 'widget/app_bar_home/widget/drawer_home_screen.dart';
+import 'floating_action_btn/index.dart';
+import 'widget/app_bar_home.dart';
+import 'drawer/drawer_home_screen.dart';
 import 'widget/chat_with_doctor_widget.dart';
 import 'widget/our_services_widget.dart';
 import 'widget/populer_doctors_widget.dart';
@@ -37,6 +38,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
+          floatingActionButton:const FloatingActionBtnHome(),
         ),
       ),
     );
