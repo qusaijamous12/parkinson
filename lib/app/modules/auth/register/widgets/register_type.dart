@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import '../../../../data/controller/login_controller.dart';
+import '../../../../data/controller/user_controller.dart';
 import '../../../../shared/contstant/image_manager.dart';
 import '../../../../shared/contstant/values_manager.dart';
 

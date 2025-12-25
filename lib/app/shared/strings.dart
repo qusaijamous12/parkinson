@@ -62,12 +62,60 @@ class Strings extends Translations{
       'book_now_':'احجز الآن',
       'services':'الخدمات',
       'patient_care':' رعاية المرضى يجب أن تكون الأولوية القصوى.',
+      'profile':'الملف الشخصي',
+      'log_out':'تسجيل الخروج',
+      'settings':'الإعدادات',
+      'add_medicine':'إضافة دواء',
+      'medicine_information':'معلومات الدواء',
+      'medicine_name':'اسم الدواء',
+      'e.g_panadol':'مثال: بانادول',
+      'dosage':'الجرعة',
+      'e.g_pill':'مثال: حبة واحدة',
+      'reminder_time':'وقت التذكير',
+      'select_reminder_time':'اختر وقت التذكير',
+      'save_reminder':'حفظ التذكير',
+      'please_fill_fields':'يرجى ملء جميع الحقول',
+      'time_to_take':'وقت تناول',
+      'medicine_reminder_scheduled':'تم جدولة تذكير الدواء',
+      'my_medicines':'أدويتي',
+      'no_medicines_yet':'لا توجد أدوية بعد!!',
+      'add_your_medicines':'أضف أدويتك للبدء في تتبع الجرعات والتذكيرات.',
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
     },
     'en':{
+      'add_your_medicines':'Add your medicines to start tracking your doses and reminders.',
+  'no_medicines_yet':'No medicines yet!',
+  'my_medicines':'My Medicines',
+      'medicine_reminder_scheduled':'Medicine reminder scheduled',
+      'time_to_take':'Time to take',
+      'please_fill_fields':'Please fill all fields',
+      'save_reminder':'Save Reminder',
+      'select_reminder_time':'Select reminder time',
+      'reminder_time':'Reminder Time',
+  'e.g_pill':'e.g. 1 pill',
+  'dosage':'Dosage',
+  'e.g_panadol':'e.g. Panadol',
+  'medicine_name':'Medicine Name',
+      'medicine_information':'Medicine Information',
+  'add_medicine':'Add Medicine',
+  'settings':'Settings',
+  'log_out':'Log Out',
+      'profile':'Profile',
       'patient_care':'Patient care should be the number one priority.',
   'services':'Services',
   'book_now_':'Book Now',

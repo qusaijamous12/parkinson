@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../modules/home_screen/home_screen.dart';
 import '../../modules/list_chat_screen/list_chat_screen.dart';
 import '../../modules/profile_screen/profile_screen.dart';
+import '../../shared/helper/shared_pref_helper.dart';
 import '../../shared/utils/utils.dart';
 
 class AppController extends GetxController{
@@ -18,5 +19,10 @@ class AppController extends GetxController{
     else
       Get.updateLocale(const Locale('ar'));
   }
+
+
+
+  bool get isLoggedIn=>SharedPrefHelper.getBool(key: 'logged_in')??false;
+
 
 }

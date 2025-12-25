@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/controller/login_controller.dart';
+import '../../../../data/controller/user_controller.dart';
 import '../../../../shared/contstant/color_manager.dart';
 import '../../../../shared/helper/app_regx.dart';
 import '../../../../shared/utils/text_utils.dart';

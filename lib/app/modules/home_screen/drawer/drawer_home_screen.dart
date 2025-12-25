@@ -2,8 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data/controller/login_controller.dart';
+import '../../../data/controller/app_controller.dart';
+import '../../../data/controller/user_controller.dart';
 import '../../../shared/contstant/color_manager.dart';
+import '../../my_medicines_screen/index.dart';
+import '../../profile_screen/profile_screen.dart';
 
 class DrawerHomeScreen extends StatelessWidget {
   const DrawerHomeScreen({super.key});
@@ -11,6 +14,7 @@ class DrawerHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _user=Get.find<UserController>(tag: 'user_controller');
+    final _app=Get.find<AppController>(tag: 'app_controller');
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -29,17 +33,23 @@ class DrawerHomeScreen extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.person),
-            title: const Text('Profile'),
+            title:  Text('profile'.tr),
             onTap: () {
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Profile tapped')),
-              );
+              Get.back();
+              Get.to(()=>const ProfileScreen());
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.medical_information_outlined),
+            title:  Text('my_medicines'.tr),
+            onTap: () {
+              Get.back();
+              Get.to(()=>const MyMedicinesScreen());
             },
           ),
           ListTile(
             leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
+            title:  Text('settings'.tr),
             onTap: () {
               // Navigate to Settings Screen
               Navigator.pop(context);
@@ -50,13 +60,18 @@ class DrawerHomeScreen extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.language),
-            title: const Text('Language'),
+            title:  Text('language'.tr),
             onTap: () {
-              // Navigate to Language Screen
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Language tapped')),
-              );
+              Get.back();
+              _app.changeLanguage();
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title:  Text('log_out'.tr),
+            onTap: () {
+              Get.back();
+              _user.logOut();
             },
           ),
         ],

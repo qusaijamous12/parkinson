@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
-import '../../data/controller/login_controller.dart';
+import '../../data/controller/user_controller.dart';
 import '../../data/enum/data_status.dart';
 import '../../routes/route_manager.dart';
 import '../../shared/contstant/color_manager.dart';

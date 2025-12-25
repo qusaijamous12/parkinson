@@ -6,21 +6,36 @@ import 'package:toastification/toastification.dart';
 import '../../modules/auth/login/login.dart';
 import '../../modules/home_screen/home_screen.dart';
 import '../../routes/route_manager.dart';
+import '../../shared/helper/shared_pref_helper.dart';
 import '../../shared/utils/utils.dart';
 import '../enum/data_status.dart';
+import '../model/medicine_model.dart';
 import '../model/user_model.dart';
 
 class UserController extends GetxController {
+
+
+
+  @override
+  void onInit() {
+    Future.delayed(Duration.zero,(){
+      handleLoggedInUser();
+    });
+    super.onInit();
+  }
+
+
   final _firebaseAuth = FirebaseAuth.instance;
   final _firebaseInstance = FirebaseFirestore.instance;
   final _googleSignIn = GoogleSignIn();
-
+  final _medicines=RxList<MedicineModel>([]);
   final _userModel = Rxn<UserModel>();
 
   ///Data Status
   final loginStatus = Rx<ApiStatus>(ApiStatus.initial);
   final registerStatus = Rx<ApiStatus>(ApiStatus.initial);
   final forgetPasswordStatus = Rx<ApiStatus>(ApiStatus.initial);
+  final getMyMedicinesApiStatus=Rx<ApiStatus>(ApiStatus.initial);
 
   Future<void> login({required String email, required String password}) async {
     loginStatus(ApiStatus.loading);
@@ -57,9 +72,9 @@ class UserController extends GetxController {
       final result = await _firebaseInstance.collection('users').doc(uid).get();
       if (result.data() != null) {
         _userModel(UserModel.fromJson(result.data()!));
+        saveUserDataToSharedPref(userData:result.data()!);
       } else {
         _userModel(null);
-
         Utils.showToast(title: 'There is an error', type: ToastificationType.error);
 
       }
@@ -146,6 +161,38 @@ class UserController extends GetxController {
     }
   }
 
+  Future<void> saveUserDataToSharedPref({required final Map<String,dynamic> userData}) async {
+   try{
+     SharedPrefHelper.saveJson(value: userData, key: 'user_model');
+     SharedPrefHelper.setBool(value: true, key: 'logged_in');
+   } catch(error){
+     Utils.printLog('Error When Save User Data To Shared Pref ${error.toString()}');
+     SharedPrefHelper.setBool(value: false, key: 'logged_in');
+     SharedPrefHelper.saveJson(value: {}, key: 'user_model');
+   }
+  }
+
+  void handleLoggedInUser(){
+    try{
+      if(SharedPrefHelper.getJson(key: 'user_model')!=null){
+        _userModel(UserModel.fromJson(SharedPrefHelper.getJson(key: 'user_model')!));
+      }
+
+    }catch(error){
+      Utils.printLog('Error When Handle Login ${error.toString()}');
+    }
+  }
+
+  void logOut(){
+    try{
+      SharedPrefHelper.setBool(value: false, key: 'logged_in');
+      SharedPrefHelper.saveJson(value: {}, key: 'user_model');
+      RouteManager.offAll(const LoginScreen());
+    }catch(error){
+      Utils.printLog('Error When Log Out ${error.toString()}');
+    }
+  }
+
 
   ///Login With Google
   Future<bool> signInWithGoogle() async {
@@ -193,7 +240,7 @@ class UserController extends GetxController {
       final data = userDoc.data()!;
       final currentUser = UserModel.fromJson(data);
       _userModel(currentUser);
-
+      saveUserDataToSharedPref(userData: data);
       loginStatus(ApiStatus.success);
       RouteManager.offAll(const HomeScreen());
       return true;
@@ -204,6 +251,30 @@ class UserController extends GetxController {
       return false;
     }
   }
+  ///My Medicines
+  Future<void> getMyMedicines()async{
+    try{
+      _medicines.clear();
+      getMyMedicinesApiStatus(ApiStatus.loading);
+      final result=await _firebaseInstance.collection('users').doc(_userModel.value!.uid).collection('my_drugs').get();
+
+      if(result.docs.isNotEmpty){
+        _medicines.clear();
+        for(var doc in result.docs){
+          _medicines.add(MedicineModel.fromJson(doc.data()));
+        }
+      }
+      getMyMedicinesApiStatus(ApiStatus.success);
+
+
+    }catch(error){
+      Utils.printLog('Error When Get My Medicines ${error.toString()}');
+      getMyMedicinesApiStatus(ApiStatus.failure);
+
+
+    }
+  }
 
   UserModel? get userModel => _userModel.value;
+  List<MedicineModel> get medicines=>_medicines;
 }

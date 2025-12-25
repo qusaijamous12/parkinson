@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../app_controller.dart';
-import '../login_controller.dart';
+import '../user_controller.dart';
 
 class InitialBinding extends Bindings{
   @override

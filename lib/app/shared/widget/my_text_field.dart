@@ -12,6 +12,7 @@ class MyTextField extends StatefulWidget {
   final Widget? suffixIcon;
   final String? Function(String?)? validate;
   final bool isPassword;
+  final bool enabled;
 
   const MyTextField({
     super.key,
@@ -19,6 +20,7 @@ class MyTextField extends StatefulWidget {
     required this.textInputType,
     required this.controller,
     this.suffixIcon,
+    this.enabled=true,
     this.validate,
     this.isPassword=false
   });
@@ -42,6 +44,7 @@ class _MyTextFieldState extends State<MyTextField> {
       child: TextFormField(
         controller: widget.controller,
         keyboardType: widget.textInputType,
+        enabled: widget.enabled,
         obscureText:widget.isPassword? showPassword:false,
         decoration: InputDecoration(
           isDense: true,
