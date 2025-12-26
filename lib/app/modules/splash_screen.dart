@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../data/controller/app_controller.dart';
+import '../data/controller/binding/home_binding.dart';
 import '../routes/route_manager.dart';
 import '../shared/contstant/image_manager.dart';
 import 'home_screen/home_screen.dart';
@@ -27,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   void _onFinish(){
     if(_app.isLoggedIn){
-      RouteManager.offAll(const HomeScreen());
+      RouteManager.offAll(const HomeScreen(),bindings: HomeBinding());
     }
     else
     RouteManager.offAll(const OnBoardScreen());

@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../../shared/contstant/values_manager.dart';
-import 'title_home_widget.dart';
+import '../../../../data/controller/home_controller.dart';
+import '../../../../shared/contstant/values_manager.dart';
+import '../title_home_widget.dart';
 
-class ChatWithDoctorWidget extends StatelessWidget {
-  const ChatWithDoctorWidget({super.key});
+class SuccessChatWithDoctors extends StatelessWidget {
+  const SuccessChatWithDoctors({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final _homeController=Get.find<HomeController>(tag: 'home_controller');
     return   Padding(
       padding: const EdgeInsetsDirectional.symmetric(
         horizontal: AppPadding.kPadding,
@@ -34,12 +37,12 @@ class ChatWithDoctorWidget extends StatelessWidget {
                   height: 170,
                   width: 140,
                   fit: BoxFit.cover,
-                  'https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsb2ZmaWNlMV9waG90b2dyYXBoeV9vZl9hbl9zb3V0aF9pbmRpYW5fd29tZW5fYXNfYV9kb2N0b19kMzAxMDM3Zi03MDUzLTQxNDAtYmYyZS1lZDFlYWE0YTM3NDRfMS5qcGc.jpg',
+                  '${_homeController.doctors[index].imageUrl}'
                 ),
               ),
               separatorBuilder: (context, index) =>
               const SizedBox(width: AppPadding.kPadding / 2),
-              itemCount: 5,
+              itemCount: _homeController.doctors.length,
             ),
           ),
         ],

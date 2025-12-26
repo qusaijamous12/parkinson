@@ -6,6 +6,10 @@ import '../contstant/style_manager.dart';
 
 class Utils{
 
+  static void closeKeyboard() {
+    FocusManager.instance.primaryFocus?.unfocus();
+  }
+
   static void printLog(Object? message) {
     if(kDebugMode)
     debugPrint('🔹 $message');
@@ -58,9 +62,7 @@ class Utils{
 }
 
 
-  static void closeKeyboard() {
-    FocusManager.instance.primaryFocus?.unfocus();
-  }
+
 
 
 }

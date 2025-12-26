@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:redacted/redacted.dart';
 
+import '../../../data/controller/home_controller.dart';
+import '../../../data/enum/data_status.dart';
+import '../../../shared/contstant/color_manager.dart';
 import '../../../shared/contstant/style_manager.dart';
 import '../../../shared/contstant/values_manager.dart';
 import 'title_home_widget.dart';
@@ -10,14 +14,22 @@ class OurServicesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return     Padding(
+    final _homeController=Get.find<HomeController>(tag: 'home_controller');
+    return     Obx(()=>Padding(
       padding: const EdgeInsetsDirectional.symmetric(
           horizontal: AppPadding.kPadding),
       child: Column(
         spacing: AppPadding.kPadding,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TitleHomeWidget(title: 'our_services'),
+          const TitleHomeWidget(title: 'our_services').redacted(
+            context: context,
+            redact: _homeController.getDoctorsStatus.value==ApiStatus.loading,
+            configuration: RedactedConfiguration(
+                redactedColor: ColorManager.moreLightGrey
+
+            ),
+          ),
           Container(
             decoration: BoxDecoration(
               borderRadius:
@@ -63,6 +75,13 @@ class OurServicesWidget extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ).redacted(
+            context: context,
+            redact: _homeController.getDoctorsStatus.value==ApiStatus.loading,
+            configuration: RedactedConfiguration(
+                redactedColor: ColorManager.moreLightGrey
+
             ),
           ),
           Container(
@@ -111,10 +130,17 @@ class OurServicesWidget extends StatelessWidget {
                 ),
               ],
             ),
+          ).redacted(
+            context: context,
+            redact: _homeController.getDoctorsStatus.value==ApiStatus.loading,
+            configuration: RedactedConfiguration(
+                redactedColor: ColorManager.moreLightGrey
+
+            ),
           ),
 
         ],
       ),
-    );
+    ));
   }
 }

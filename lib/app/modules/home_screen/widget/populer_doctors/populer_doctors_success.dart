@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating/flutter_rating.dart';
 import 'package:get/get.dart';
 
-import '../../../shared/contstant/color_manager.dart';
-import '../../../shared/contstant/style_manager.dart';
-import '../../../shared/contstant/values_manager.dart';
-import 'title_home_widget.dart';
+import '../../../../data/controller/home_controller.dart';
+import '../../../../shared/contstant/color_manager.dart';
+import '../../../../shared/contstant/style_manager.dart';
+import '../../../../shared/contstant/values_manager.dart';
+import '../title_home_widget.dart';
 
-class PopulerDoctorsWidget extends StatelessWidget {
-  const PopulerDoctorsWidget({super.key});
+class PopulerDoctorsSuccessWidget extends StatelessWidget {
+  const PopulerDoctorsSuccessWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return       Padding(
+    final _home=Get.find<HomeController>(tag: 'home_controller');
+    return  Padding(
       padding: const EdgeInsetsDirectional.symmetric(
         horizontal: AppPadding.kPadding,
       ),
@@ -62,30 +65,27 @@ class PopulerDoctorsWidget extends StatelessWidget {
                         height: 180,
                         width: 190,
                         fit: BoxFit.cover,
-                        'https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsb2ZmaWNlMV9waG90b2dyYXBoeV9vZl9hbl9zb3V0aF9pbmRpYW5fd29tZW5fYXNfYV9kb2N0b19kMzAxMDM3Zi03MDUzLTQxNDAtYmYyZS1lZDFlYWE0YTM3NDRfMS5qcGc.jpg'
+                      '${_home.doctors[index].imageUrl}'
                     ),
                     Text(
-                      'Qusai Jamous',
+                      '${_home.doctors[index].name?.capitalize}',
                       style: getMediumTextStyle(color: Colors.black,fontSize: FontSizeManager.fs16),
                     ),
                     Text(
-                      'Medicine Specialist',
+                      '${_home.doctors[index].major?.capitalize}',
                       style: getRegulerTextStyle(color: ColorManager.greyColor,fontSize: FontSizeManager.fs14),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        for(var i=0 ;i<5;i++)
-                          const Icon(Icons.star,color: Colors.yellow,)
-                      ],
-                    )
+                    StarRating(
+                      rating: _home.doctors[index].rate?.toDouble()??0,
+                      allowHalfRating: false,
+                    ),
 
 
                   ],
                 ),
               ),
               separatorBuilder: (context,index)=>const SizedBox(width: AppPadding.kPadding/2,),
-              itemCount: 5,
+              itemCount: _home.doctors.length,
             ),
           ),
         ],

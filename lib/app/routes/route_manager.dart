@@ -17,9 +17,10 @@ class RouteManager {
     if (Get.isOverlaysOpen) Get.back(result: result);
   }
 
-  static Future<T?> offAll<T>(Widget page) async {
+  static Future<T?> offAll<T>(Widget page,{Bindings ?bindings}) async {
     return Get.offAll<T>(
           () => page,
+      binding:bindings ,
       transition: Transition.rightToLeft,
       duration: const Duration(milliseconds: 300),
     );

@@ -11,6 +11,7 @@ import '../../shared/utils/utils.dart';
 import '../enum/data_status.dart';
 import '../model/medicine_model.dart';
 import '../model/user_model.dart';
+import 'binding/home_binding.dart';
 
 class UserController extends GetxController {
 
@@ -30,6 +31,7 @@ class UserController extends GetxController {
   final _googleSignIn = GoogleSignIn();
   final _medicines=RxList<MedicineModel>([]);
   final _userModel = Rxn<UserModel>();
+  final _doctors=RxList<UserModel>([]);
 
   ///Data Status
   final loginStatus = Rx<ApiStatus>(ApiStatus.initial);
@@ -52,7 +54,7 @@ class UserController extends GetxController {
           Utils.showToast(title: 'Login Success', type: ToastificationType.success);
 
           loginStatus(ApiStatus.success);
-          RouteManager.offAll(const HomeScreen());
+          RouteManager.offAll(const HomeScreen(),bindings: HomeBinding());
         }
       } else {
         loginStatus(ApiStatus.failure);
@@ -242,7 +244,7 @@ class UserController extends GetxController {
       _userModel(currentUser);
       saveUserDataToSharedPref(userData: data);
       loginStatus(ApiStatus.success);
-      RouteManager.offAll(const HomeScreen());
+      RouteManager.offAll(const HomeScreen(),bindings: HomeBinding());
       return true;
     } catch (error) {
       print('Google Sign-In Error: $error');

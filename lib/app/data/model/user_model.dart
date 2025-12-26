@@ -5,6 +5,8 @@ class UserModel{
   final String? mobileNumber;
   final String? imageUrl;
   final String? userType;
+  final String ?major;
+  final num ?rate;
 
   UserModel({
     required this.uid,
@@ -12,7 +14,9 @@ class UserModel{
     this.name,
     this.mobileNumber,
     this.imageUrl,
-    this.userType
+    this.userType,
+    this.major,
+    this.rate
 });
 
   factory UserModel.fromJson(final Map<String,dynamic> json){
@@ -22,7 +26,9 @@ class UserModel{
       email: json['email'],
       mobileNumber: json['mobile_number'],
       userType: json['user_type'],
-      imageUrl: json['profile_image']
+      imageUrl: json['profile_image'],
+      major: json['major'],
+      rate: json['rate']
     );
   }
 
