@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../data/model/test_question.dart';
 import '../../shared/contstant/color_manager.dart';
 import '../../shared/widget/app_bar.dart';
+import 'balance_gait_test/index.dart';
 import 'widgets/info_card.dart';
-import 'widgets/self_test.dart';
 import 'widgets/test_card.dart';
-import 'widgets/tremor_test_screen.dart';
+import 'termor_test/index.dart';
 
 class ParkinsonTest extends StatelessWidget {
   const ParkinsonTest({super.key});
@@ -21,8 +19,7 @@ class ParkinsonTest extends StatelessWidget {
         child: Scaffold(
           body: Column(
             children: [
-              // Custom App Bar
-              const ScreenAppBar(title: 'Parkinson Tests'),
+              const ScreenAppBar(title: 'parkinson_tests'),
 
               Expanded(
                 child: SingleChildScrollView(
@@ -93,15 +90,13 @@ class ParkinsonTest extends StatelessWidget {
                       TestCard(
                         title: 'tremor_test',
                         description: 'check_your_tremors',
-                        onTap: () {
-                          Get.to(()=>const TremorTestScreen());
-                        },
+                        onTap: () =>Get.to(()=>const TremorTestScreen()),
                       ),
                       const SizedBox(height: 12),
                       TestCard(
                         title: 'balance_gait_test',
                         description: 'evaluate_your_balance',
-                        onTap: () {},
+                        onTap: ()=>Get.to(()=>const BalanceGaitTestScreen()),
                       ),
                       const SizedBox(height: 12),
                       TestCard(

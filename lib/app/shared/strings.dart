@@ -111,6 +111,18 @@ class Strings extends Translations{
       'exercise':'مارس التمارين بانتظام لتحسين الحركة والتوازن',
       'healthy_diet':'نظام غذائي صحي',
       'balanced_diet':'يمكن أن يساعد النظام الغذائي المتوازن في إدارة الأعراض وتحسين الصحة العامة',
+      'parkinson_tests':'مرض الباركنسون',
+      'this_test':'هذا الاختبار ليس تشخيصًا طبيًا.\nيرجى استشارة الطبيب.',
+      'low_tremor_detected':'تم اكتشاف رعشة منخفضة',
+      'moderate_tremor_detected':'تم اكتشاف رعشة متوسطة',
+      'high_tremor_detected':'تم اكتشاف رعشة عالية',
+      'hold_your_phone':'أمسك هاتفك بثبات بيد واحدة وحاول البقاء ساكنًا أثناء الاختبار.',
+
+
+
+
+
+
 
 
 
@@ -123,6 +135,12 @@ class Strings extends Translations{
 
     },
     'en':{
+      'hold_your_phone':'Hold your phone steady in one hand and remain still during the test.',
+      'high_tremor_detected':'High tremor detected',
+      'moderate_tremor_detected':'Moderate tremor detected',
+      'low_tremor_detected':'Low tremor detected',
+      'this_test':'This test is not a medical diagnosis.\nPlease consult a doctor.',
+      'parkinson_tests':'Parkinson Tests',
       'balanced_diet':'A balanced diet can help manage symptoms and overall health',
       'healthy_diet':'Healthy Diet',
       'exercise':'Exercise regularly to improve mobility and balance.',

@@ -1,18 +1,18 @@
-
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
-class TremorTestScreen extends StatefulWidget {
-  const TremorTestScreen({super.key});
+class BalanceGaitTestScreen extends StatefulWidget {
+  const BalanceGaitTestScreen({super.key});
 
   @override
-  State<TremorTestScreen> createState() => _TremorTestScreenState();
+  State<BalanceGaitTestScreen> createState() => _BalanceGaitTestScreenState();
 }
 
-class _TremorTestScreenState extends State<TremorTestScreen> {
+class _BalanceGaitTestScreenState extends State<BalanceGaitTestScreen> {
   StreamSubscription<AccelerometerEvent>? _subscription;
+  Timer? _timer;
   List<double> _values = [];
 
   bool _isTesting = false;
@@ -29,13 +29,13 @@ class _TremorTestScreenState extends State<TremorTestScreen> {
     });
 
     _subscription = accelerometerEvents.listen((event) {
-      final magnitude =
-      sqrt(event.x * event.x + event.y * event.y + event.z * event.z);
+      final magnitude = sqrt(event.x * event.x + event.y * event.y + event.z * event.z);
       _values.add(magnitude);
     });
 
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_secondsLeft == 0) {
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_secondsLeft <= 1) {
         timer.cancel();
         _stopTest();
       } else {
@@ -48,57 +48,58 @@ class _TremorTestScreenState extends State<TremorTestScreen> {
 
   void _stopTest() {
     _subscription?.cancel();
-    _isTesting = false;
+    _timer?.cancel();
 
-    final avg =
-        _values.reduce((a, b) => a + b) / (_values.isEmpty ? 1 : _values.length);
+    final avg = _values.isEmpty
+        ? 0
+        : _values.reduce((a, b) => a + b) / _values.length;
 
-    if (avg < 11) {
-      _result = 'Low tremor detected';
+    if (avg < 11.5) {
+      _result = 'Good balance';
     } else if (avg < 13) {
-      _result = 'Moderate tremor detected';
+      _result = 'Moderate imbalance';
     } else {
-      _result = 'High tremor detected';
+      _result = 'High imbalance detected';
     }
 
-    setState(() {});
+    setState(() {
+      _isTesting = false;
+      _secondsLeft = 0;
+    });
   }
 
   @override
   void dispose() {
     _subscription?.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tremor Test'),
-      ),
+      appBar: AppBar(title: const Text('Balance & Gait Test')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             const Text(
-              'Hold your phone steady in your hand.\nRemain still during the test.',
+              'Place your phone at waist level or hold it in your hand.\nWalk slowly in a straight line or stand still.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 40),
 
             if (_isTesting)
               Text(
                 '$_secondsLeft',
-                style:
-                const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.blue),
               ),
-
-            const SizedBox(height: 30),
+            const SizedBox(height: 40),
 
             ElevatedButton(
               onPressed: _isTesting ? null : _startTest,
-              child: const Text('Start Tremor Test'),
+              child: Text(_isTesting ? 'Testing...' : 'Start Test'),
             ),
 
             const SizedBox(height: 30),
@@ -106,14 +107,11 @@ class _TremorTestScreenState extends State<TremorTestScreen> {
             if (_result != null)
               Column(
                 children: [
-                  const Icon(Icons.analytics, size: 40),
+                  const Icon(Icons.monitor_heart, size: 40, color: Colors.green),
                   const SizedBox(height: 10),
                   Text(
                     _result!,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
                   const Text(
