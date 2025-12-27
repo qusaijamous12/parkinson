@@ -14,7 +14,7 @@ class DoctorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   GestureDetector(
-      onTap: ()=>Get.to(const DoctorDetailsScreen()),
+      onTap: ()=>Get.to( DoctorDetailsScreen(model: model,)),
       behavior: HitTestBehavior.opaque,
       child: Row(
         spacing: AppPadding.kPadding/2,

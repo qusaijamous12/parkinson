@@ -81,7 +81,6 @@ class _SearchDoctorsScreenState extends State<SearchDoctorsScreen> {
                           textInputType: TextInputType.text,
                           controller: _searchController,
                         ),
-                        ///This CASE wILL sHOW IS USER SEARCH AND THERE IS NO USERS HERE
                         if (filteredUsers.isEmpty)
                           Expanded(
                             child: Center(

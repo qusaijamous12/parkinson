@@ -39,7 +39,7 @@ class DoctorReviewCard extends StatelessWidget {
                 children: [
                   Text(
                     '100',
-                    style: getMediumTextStyle(color: Colors.black,fontSize: FontSizeManager.fs16),
+                    style: getBoldTextStyle(color: Colors.black,fontSize: FontSizeManager.fs16),
                   ),
                   Text(
                     'Runing',
@@ -61,11 +61,11 @@ class DoctorReviewCard extends StatelessWidget {
                 spacing: AppPadding.kPadding/2,
                 children: [
                   Text(
-                    '100',
-                    style: getMediumTextStyle(color: Colors.black,fontSize: FontSizeManager.fs16),
+                    '500',
+                    style: getBoldTextStyle(color: Colors.black,fontSize: FontSizeManager.fs16),
                   ),
                   Text(
-                    'Runing',
+                    'Ongoing',
                     style: getRegulerTextStyle(color: ColorManager.lightGrey,fontSize: FontSizeManager.fs14),
                   )
                 ],
@@ -84,11 +84,11 @@ class DoctorReviewCard extends StatelessWidget {
                 spacing: AppPadding.kPadding/2,
                 children: [
                   Text(
-                    '100',
-                    style: getMediumTextStyle(color: Colors.black,fontSize: FontSizeManager.fs16),
+                    '700',
+                    style: getBoldTextStyle(color: Colors.black,fontSize: FontSizeManager.fs16),
                   ),
                   Text(
-                    'Runing',
+                    'Patient',
                     style: getRegulerTextStyle(color: ColorManager.lightGrey,fontSize: FontSizeManager.fs14),
                   )
                 ],

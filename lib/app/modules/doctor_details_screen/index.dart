@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../../data/model/user_model.dart';
 import '../../shared/contstant/color_manager.dart';
 import '../../shared/contstant/style_manager.dart';
 import '../../shared/contstant/values_manager.dart';
@@ -15,25 +16,26 @@ import 'widgets/map_card.dart';
 import 'widgets/services_widget.dart';
 
 class DoctorDetailsScreen extends StatelessWidget {
-  const DoctorDetailsScreen({super.key});
+  final UserModel model;
+  const DoctorDetailsScreen({super.key,required this.model});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       body: Column(
         children: [
-          ScreenAppBar(title: 'doctor_details',isDoctorDetails: true,),
+          const  ScreenAppBar(title: 'doctor_details',isDoctorDetails: true,),
           Expanded(
             child: SingleChildScrollView(
-              padding:  EdgeInsetsDirectional.all(AppPadding.kPadding),
+              padding:const  EdgeInsetsDirectional.all(AppPadding.kPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: AppPadding.kPadding,
                 children: [
-                   DoctorDetailsCard(),
-                   DoctorReviewCard(),
-                    ServicesWidget(),
-                   MapCard()
+                   DoctorDetailsCard(model: model,),
+                  const  DoctorReviewCard(),
+                  const   ServicesWidget(),
+                  const  MapCard()
 
 
 

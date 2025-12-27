@@ -19,22 +19,48 @@ class ServicesWidget extends StatelessWidget {
         const SizedBox(
           height: AppPadding.kPadding/2,
         ),
-        for(var i=0 ; i<3;i++)...[
-          Row(
-            spacing: AppPadding.kPadding/2,
-            children: [
-              Text(
-                '${i+1}-',
-                style: getMediumTextStyle(color: ColorManager.kPrimary,fontSize: FontSizeManager.fs18),
-              ),
-              Text(
-                'patient_care'.tr,
-                style: getRegulerTextStyle(color: ColorManager.lightGrey,fontSize: FontSizeManager.fs16),
-              )
-            ],
-          ),
-          const MyDivider()
-        ]
+        Row(
+          spacing: AppPadding.kPadding/2,
+          children: [
+            Text(
+              '${1}-',
+              style: getMediumTextStyle(color: ColorManager.kPrimary,fontSize: FontSizeManager.fs18),
+            ),
+            Text(
+              'patient_care'.tr,
+              style: getRegulerTextStyle(color: ColorManager.lightGrey,fontSize: FontSizeManager.fs14),
+            )
+          ],
+        ),
+        const MyDivider(),
+        Row(
+          spacing: AppPadding.kPadding/2,
+          children: [
+            Text(
+              '${2}-',
+              style: getMediumTextStyle(color: ColorManager.kPrimary,fontSize: FontSizeManager.fs18),
+            ),
+            Text(
+              'if_run_your'.tr,
+              style: getRegulerTextStyle(color: ColorManager.lightGrey,fontSize: FontSizeManager.fs14),
+            )
+          ],
+        ),
+        const MyDivider(),
+        Row(
+          spacing: AppPadding.kPadding/2,
+          children: [
+            Text(
+              '${3}-',
+              style: getMediumTextStyle(color: ColorManager.kPrimary,fontSize: FontSizeManager.fs18),
+            ),
+            Text(
+              'that_why_some'.tr,
+              style: getRegulerTextStyle(color: ColorManager.lightGrey,fontSize: FontSizeManager.fs14),
+            )
+          ],
+        ),
+        const MyDivider()
 
       ],
     );

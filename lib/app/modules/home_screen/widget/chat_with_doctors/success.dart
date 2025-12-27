@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../data/controller/home_controller.dart';
 import '../../../../shared/contstant/values_manager.dart';
+import '../../../chat/message_screen.dart';
 import '../title_home_widget.dart';
 
 class SuccessChatWithDoctors extends StatelessWidget {
@@ -25,19 +26,22 @@ class SuccessChatWithDoctors extends StatelessWidget {
             height: 200,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(
-                    AppRadius.kRadius,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: ()=>Get.to(()=>const MessageScreen()),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadiusDirectional.circular(
+                      AppRadius.kRadius,
+                    ),
                   ),
-                ),
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-
-                child: Image.network(
-                  height: 170,
-                  width: 140,
-                  fit: BoxFit.cover,
-                  '${_homeController.doctors[index].imageUrl}'
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                
+                  child: Image.network(
+                    height: 170,
+                    width: 140,
+                    fit: BoxFit.cover,
+                    '${_homeController.doctors[index].imageUrl}'
+                  ),
                 ),
               ),
               separatorBuilder: (context, index) =>

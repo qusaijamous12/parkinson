@@ -1,23 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
 import 'package:get/get.dart';
 
-import '../../../data/controller/binding/appointment_binding.dart';
 import '../../../data/model/user_model.dart';
-import '../../../routes/route_manager.dart';
 import '../../../shared/contstant/color_manager.dart';
 import '../../../shared/contstant/style_manager.dart';
 import '../../../shared/contstant/values_manager.dart';
-import '../../../shared/widget/my_button.dart';
-import '../../appointment/index.dart';
 
-class DoctorDetailsCard extends StatelessWidget {
+class DoctorCard extends StatelessWidget {
   final UserModel model;
-  const DoctorDetailsCard({super.key,required this.model});
+  const DoctorCard({super.key,required this.model});
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       padding:const EdgeInsetsDirectional.all(AppPadding.kPadding/2),
       width: double.infinity,
       decoration: BoxDecoration(
@@ -80,7 +77,6 @@ class DoctorDetailsCard extends StatelessWidget {
               )
             ],
           ),
-          MyBtn(title: 'book_now_'.tr, onTap: ()=>Get.to(()=> AppointmentScreen(userModel: model,),binding: AppointmentBinding(model)))
         ],
       ),
     );

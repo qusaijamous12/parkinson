@@ -52,6 +52,7 @@ dependencies:
   intl: ^0.20.2
   redacted: ^1.0.13
   flutter_rating: ^2.0.2
+  sensors_plus: ^7.0.0
 
 
 dev_dependencies:

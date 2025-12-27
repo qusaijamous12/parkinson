@@ -7,6 +7,8 @@ import '../../../data/enum/data_status.dart';
 import '../../../shared/contstant/color_manager.dart';
 import '../../../shared/contstant/style_manager.dart';
 import '../../../shared/contstant/values_manager.dart';
+import '../../parkinson_test/index.dart';
+import '../../search_screen/index.dart';
 import 'title_home_widget.dart';
 
 class OurServicesWidget extends StatelessWidget {
@@ -30,112 +32,119 @@ class OurServicesWidget extends StatelessWidget {
 
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius:
-              BorderRadiusDirectional.circular(AppRadius.kRadius),
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: Stack(
-              alignment: AlignmentDirectional.bottomStart,
-              children: [
-                Image.network(
-                  'https://thumbs.dreamstime.com/b/african-male-doctor-happy-tablet-computer-34481166.jpg',
-                  width: double.infinity,
-                  height: 190,
-                  fit: BoxFit.cover,
-                ),
+          GestureDetector(
+            onTap: ()=>Get.to(()=>const ParkinsonTest()),
+            behavior: HitTestBehavior.opaque,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius:
+                BorderRadiusDirectional.circular(AppRadius.kRadius),
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: Stack(
+                alignment: AlignmentDirectional.bottomStart,
+                children: [
+                  Image.network(
+                    'https://thumbs.dreamstime.com/b/african-male-doctor-happy-tablet-computer-34481166.jpg',
+                    width: double.infinity,
+                    height: 190,
+                    fit: BoxFit.cover,
+                  ),
 
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    height: 70,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          Colors.black.withOpacity(0.7),
-                        ],
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      height: 70,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withOpacity(0.7),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
 
-                // Text
-                Padding(
-                  padding: const EdgeInsetsDirectional.all(
-                      AppPadding.kPadding / 2),
-                  child: Text(
-                    'test_your_self_now'.tr,
-                    style: getMediumTextStyle(color: Colors.white),
+                  // Text
+                  Padding(
+                    padding: const EdgeInsetsDirectional.all(
+                        AppPadding.kPadding / 2),
+                    child: Text(
+                      'test_your_self_now'.tr,
+                      style: getMediumTextStyle(color: Colors.white),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ).redacted(
-            context: context,
-            redact: _homeController.getDoctorsStatus.value==ApiStatus.loading,
-            configuration: RedactedConfiguration(
-                redactedColor: ColorManager.moreLightGrey
+                ],
+              ),
+            ).redacted(
+              context: context,
+              redact: _homeController.getDoctorsStatus.value==ApiStatus.loading,
+              configuration: RedactedConfiguration(
+                  redactedColor: ColorManager.moreLightGrey
 
+              ),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius:
-              BorderRadiusDirectional.circular(AppRadius.kRadius),
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: Stack(
-              alignment: AlignmentDirectional.bottomStart,
-              children: [
-                Image.network(
-                  'https://www.shutterstock.com/image-photo/portrait-handsome-male-doctor-stethoscope-600nw-2480850611.jpg',
-                  width: double.infinity,
-                  height: 190,
-                  fit: BoxFit.cover,
-                ),
-
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    height: 70,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          Colors.black.withOpacity(0.7),
-                        ],
+          GestureDetector(
+            onTap: ()=>Get.to(()=>const SearchDoctorsScreen()),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius:
+                BorderRadiusDirectional.circular(AppRadius.kRadius),
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: Stack(
+                alignment: AlignmentDirectional.bottomStart,
+                children: [
+                  Image.network(
+                    'https://www.shutterstock.com/image-photo/portrait-handsome-male-doctor-stethoscope-600nw-2480850611.jpg',
+                    width: double.infinity,
+                    height: 190,
+                    fit: BoxFit.cover,
+                  ),
+            
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      height: 70,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withOpacity(0.7),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-
-                // Text
-                Padding(
-                  padding: const EdgeInsetsDirectional.all(
-                      AppPadding.kPadding / 2),
-                  child: Text(
-                    'book_now'.tr,
-                    style: getMediumTextStyle(color: Colors.white),
+            
+                  // Text
+                  Padding(
+                    padding: const EdgeInsetsDirectional.all(
+                        AppPadding.kPadding / 2),
+                    child: Text(
+                      'book_now'.tr,
+                      style: getMediumTextStyle(color: Colors.white),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ).redacted(
-            context: context,
-            redact: _homeController.getDoctorsStatus.value==ApiStatus.loading,
-            configuration: RedactedConfiguration(
-                redactedColor: ColorManager.moreLightGrey
-
+                ],
+              ),
+            ).redacted(
+              context: context,
+              redact: _homeController.getDoctorsStatus.value==ApiStatus.loading,
+              configuration: RedactedConfiguration(
+                  redactedColor: ColorManager.moreLightGrey
+            
+              ),
             ),
           ),
 

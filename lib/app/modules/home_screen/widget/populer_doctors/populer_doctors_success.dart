@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
 import 'package:get/get.dart';
 
+import '../../../../data/controller/binding/appointment_binding.dart';
 import '../../../../data/controller/home_controller.dart';
 import '../../../../shared/contstant/color_manager.dart';
 import '../../../../shared/contstant/style_manager.dart';
 import '../../../../shared/contstant/values_manager.dart';
+import '../../../appointment/index.dart';
+import '../../../search_screen/index.dart';
 import '../title_home_widget.dart';
 
 class PopulerDoctorsSuccessWidget extends StatelessWidget {
@@ -27,7 +30,7 @@ class PopulerDoctorsSuccessWidget extends StatelessWidget {
             children: [
               const TitleHomeWidget(title: 'populars_doctors'),
               TextButton(
-                onPressed: () {},
+                onPressed: ()=>Get.to(()=>const SearchDoctorsScreen()),
                 child: Row(
                   spacing: AppPadding.kPadding / 3,
                   children: [
@@ -51,37 +54,41 @@ class PopulerDoctorsSuccessWidget extends StatelessWidget {
             height: 290,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context,index)=>Container(
-                height: 290,
-                width: 190,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadiusDirectional.circular(AppRadius.kRadius),
-                    color: Colors.white
-                ),
-                child: Column(
-                  spacing: AppPadding.kPadding/2,
-                  children: [
-                    Image.network(
-                        height: 180,
-                        width: 190,
-                        fit: BoxFit.cover,
-                      '${_home.doctors[index].imageUrl}'
-                    ),
-                    Text(
-                      '${_home.doctors[index].name?.capitalize}',
-                      style: getMediumTextStyle(color: Colors.black,fontSize: FontSizeManager.fs16),
-                    ),
-                    Text(
-                      '${_home.doctors[index].major?.capitalize}',
-                      style: getRegulerTextStyle(color: ColorManager.greyColor,fontSize: FontSizeManager.fs14),
-                    ),
-                    StarRating(
-                      rating: _home.doctors[index].rate?.toDouble()??0,
-                      allowHalfRating: false,
-                    ),
-
-
-                  ],
+              itemBuilder: (context,index)=>GestureDetector(
+                onTap: ()=>Get.to(()=>AppointmentScreen(userModel: _home.doctors[index]),binding: AppointmentBinding(_home.doctors[index])),
+                behavior: HitTestBehavior.opaque,
+                child: Container(
+                  height: 290,
+                  width: 190,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadiusDirectional.circular(AppRadius.kRadius),
+                      color: Colors.white
+                  ),
+                  child: Column(
+                    spacing: AppPadding.kPadding/2,
+                    children: [
+                      Image.network(
+                          height: 180,
+                          width: 190,
+                          fit: BoxFit.cover,
+                        '${_home.doctors[index].imageUrl}'
+                      ),
+                      Text(
+                        '${_home.doctors[index].name?.capitalize}',
+                        style: getMediumTextStyle(color: Colors.black,fontSize: FontSizeManager.fs16),
+                      ),
+                      Text(
+                        '${_home.doctors[index].major?.capitalize}',
+                        style: getRegulerTextStyle(color: ColorManager.greyColor,fontSize: FontSizeManager.fs14),
+                      ),
+                      StarRating(
+                        rating: _home.doctors[index].rate?.toDouble()??0,
+                        allowHalfRating: false,
+                      ),
+                
+                
+                    ],
+                  ),
                 ),
               ),
               separatorBuilder: (context,index)=>const SizedBox(width: AppPadding.kPadding/2,),
