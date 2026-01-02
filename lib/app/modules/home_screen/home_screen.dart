@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/controller/app_controller.dart';
 import '../../data/controller/home_controller.dart';
+import '../../data/controller/user_controller.dart';
 import '../../shared/contstant/values_manager.dart';
 import 'floating_action_btn/index.dart';
 import 'widget/app_bar_home.dart';
@@ -21,6 +22,7 @@ class HomeScreen extends StatelessWidget {
     final _key=GlobalKey<ScaffoldState>();
     final _home=Get.find<HomeController>(tag: 'home_controller');
     final _appController=Get.find<AppController>(tag: 'app_controller');
+    final _user=Get.find<UserController>(tag: 'user_controller');
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -43,7 +45,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          floatingActionButton:const FloatingActionBtnHome(),
+          floatingActionButton:_user.userModel?.userType=='user'?const FloatingActionBtnHome():const SizedBox(),
         ),
       ),
     );

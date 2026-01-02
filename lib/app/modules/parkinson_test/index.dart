@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../shared/contstant/color_manager.dart';
 import '../../shared/widget/app_bar.dart';
+import '../parknson_videos/parknson_videos.dart';
 import 'balance_gait_test/index.dart';
 import 'widgets/info_card.dart';
 import 'widgets/test_card.dart';
@@ -50,7 +51,7 @@ class ParkinsonTest extends StatelessWidget {
                               const BoxShadow(
                                 color: Colors.black26,
                                 blurRadius: 6,
-                                offset: const Offset(0, 3),
+                                offset:  Offset(0, 3),
                               ),
                             ],
                           ),
@@ -122,6 +123,16 @@ class ParkinsonTest extends StatelessWidget {
                       const InfoCard(
                         title: 'healthy_diet',
                         description: 'balanced_diet',
+                      ),
+                      const SizedBox(height: 8),
+
+
+                      GestureDetector(
+                        onTap: ()=>Get.to(()=>const ParknsonVideos()),
+                        child: const InfoCard(
+                          title: 'parknson_videos',
+                          description: 'educational',
+                        ),
                       ),
                     ],
                   ),

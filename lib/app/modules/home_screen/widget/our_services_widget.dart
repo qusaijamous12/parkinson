@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:redacted/redacted.dart';
 
+import '../../../data/controller/binding/parknson_test_binding.dart';
 import '../../../data/controller/home_controller.dart';
 import '../../../data/enum/data_status.dart';
 import '../../../shared/contstant/color_manager.dart';
@@ -33,7 +34,7 @@ class OurServicesWidget extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: ()=>Get.to(()=>const ParkinsonTest()),
+            onTap: ()=>Get.to(()=>const ParkinsonTest(),binding: ParknsonTestBinding()),
             behavior: HitTestBehavior.opaque,
             child: Container(
               decoration: BoxDecoration(

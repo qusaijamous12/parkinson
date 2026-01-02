@@ -54,7 +54,9 @@ class UserController extends GetxController {
           Utils.showToast(title: 'Login Success', type: ToastificationType.success);
 
           loginStatus(ApiStatus.success);
+          if(_userModel.value?.userType=='user' || _userModel.value?.userType=='doctor')
           RouteManager.offAll(const HomeScreen(),bindings: HomeBinding());
+
         }
       } else {
         loginStatus(ApiStatus.failure);
@@ -177,6 +179,7 @@ class UserController extends GetxController {
   void handleLoggedInUser(){
     try{
       if(SharedPrefHelper.getJson(key: 'user_model')!=null){
+        if(SharedPrefHelper.getJson(key: 'user_model')?.isNotEmpty??false)
         _userModel(UserModel.fromJson(SharedPrefHelper.getJson(key: 'user_model')!));
       }
 

@@ -83,6 +83,15 @@ class AppointmentController extends GetxController {
 
       confirmApiStatus(ApiStatus.success);
       Utils.showToast(title: 'appointment_booked_successfully'.tr, type: ToastificationType.success);
+      
+       _firebaseInstance.collection('appointments').add({
+        'patient_name': patientName.text,
+        'contact_number': contactNumber.text,
+        'date': selectedDate.value,
+        'time': selectedTime.value,
+        'patient_uid': userController.userModel?.uid,
+        'status': 'pending',
+      });
 
 
     } catch (error) {

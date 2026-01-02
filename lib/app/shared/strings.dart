@@ -117,24 +117,18 @@ class Strings extends Translations{
       'moderate_tremor_detected':'تم اكتشاف رعشة متوسطة',
       'high_tremor_detected':'تم اكتشاف رعشة عالية',
       'hold_your_phone':'أمسك هاتفك بثبات بيد واحدة وحاول البقاء ساكنًا أثناء الاختبار.',
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      'parknson_videos':'فيديوهات باركنسون',
+      'educational':'مقاطع فيديو تعليمية وتمارين مصممة لدعم مرضى باركنسون أثناء العلاج والأنشطة اليومية.',
+      'notifications':'الإشعارات',
+      'doctor':'دكتور',
 
 
     },
     'en':{
+      'doctor':'Doctor',
+      'notifications':'Notifications',
+      'educational':'Educational and exercise videos designed to support Parkinson’s patients during treatment and daily activities.',
+      'parknson_videos':'Parknson Videos',
       'hold_your_phone':'Hold your phone steady in one hand and remain still during the test.',
       'high_tremor_detected':'High tremor detected',
       'moderate_tremor_detected':'Moderate tremor detected',

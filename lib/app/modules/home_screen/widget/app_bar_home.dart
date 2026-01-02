@@ -7,6 +7,7 @@ import '../../../shared/contstant/color_manager.dart';
 import '../../../shared/contstant/style_manager.dart';
 import '../../../shared/contstant/values_manager.dart';
 import '../../../shared/widget/search_text_field.dart';
+import '../../my_appointment_screen.dart';
 import '../../search_screen/index.dart';
 
 class AppBarHome extends StatelessWidget {
@@ -40,15 +41,21 @@ class AppBarHome extends StatelessWidget {
               spacing: AppPadding.kPadding,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  spacing: AppPadding.kPadding/2,
                   children: [
                     GestureDetector(
                       onTap: onTapMenu,
                       child: const Icon(Icons.menu, color: Colors.white),
                     ),
+                   const Spacer(),
                     GestureDetector(
                       onTap:onTapLanguage,
                       child:const Icon(Icons.language, color: Colors.white),
+                    ),
+                    if(_userController.userModel?.userType=='user')
+                    GestureDetector(
+                      onTap:()=>Get.to(()=>const MyAppointmentScreen()),
+                      child:const Icon(Icons.notifications, color: Colors.white),
                     ),
                   ],
                 ),
@@ -61,12 +68,13 @@ class AppBarHome extends StatelessWidget {
                         spacing: AppPadding.kPadding / 2,
                         children: [
                           Text(
-                            '${'hi'.tr} ${_userController.userModel?.name?.capitalizeFirst}! ',
+                            '${'hi'.tr} ${_userController.userModel?.userType=='doctor'?'doctor'.tr:''} ${_userController.userModel?.name?.capitalizeFirst}! ',
                             style: getMediumTextStyle(
                               color: Colors.white,
                               fontSize: FontSizeManager.fs20,
                             ),
                           ),
+                          if(_userController.userModel?.userType=='user')
                           Text(
                             'find_your_doctor'.tr.toUpperCase(),
                             style: getBoldTextStyle(
