@@ -12,8 +12,8 @@ class SuccessChatWithDoctors extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _homeController=Get.find<HomeController>(tag: 'home_controller');
-    return   Padding(
+    final _homeController = Get.find<HomeController>(tag: 'home_controller');
+    return Padding(
       padding: const EdgeInsetsDirectional.symmetric(
         horizontal: AppPadding.kPadding,
       ),
@@ -27,7 +27,13 @@ class SuccessChatWithDoctors extends StatelessWidget {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => GestureDetector(
-                onTap: ()=>Get.to(()=>const MessageScreen()),
+                onTap: () => Get.to(
+                  () => MessageScreen(
+                    doctorId: _homeController.doctors[index].uid,
+                    doctorName: _homeController.doctors[index].name??'',
+                    doctorImage: _homeController.doctors[index].imageUrl??'',
+                  ),
+                ),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadiusDirectional.circular(
@@ -35,17 +41,17 @@ class SuccessChatWithDoctors extends StatelessWidget {
                     ),
                   ),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                
+
                   child: Image.network(
                     height: 170,
                     width: 140,
                     fit: BoxFit.cover,
-                    '${_homeController.doctors[index].imageUrl}'
+                    '${_homeController.doctors[index].imageUrl}',
                   ),
                 ),
               ),
               separatorBuilder: (context, index) =>
-              const SizedBox(width: AppPadding.kPadding / 2),
+                  const SizedBox(width: AppPadding.kPadding / 2),
               itemCount: _homeController.doctors.length,
             ),
           ),

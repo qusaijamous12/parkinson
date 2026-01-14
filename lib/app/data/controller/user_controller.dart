@@ -5,11 +5,14 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:toastification/toastification.dart';
 import '../../modules/auth/login/login.dart';
 import '../../modules/home_screen/home_screen.dart';
+import '../../modules/home_screen_doctor/home_screen_doctor.dart';
 import '../../routes/route_manager.dart';
 import '../../shared/helper/shared_pref_helper.dart';
 import '../../shared/utils/utils.dart';
 import '../enum/data_status.dart';
+import '../model/appoinment.dart';
 import '../model/medicine_model.dart';
+import '../model/user_appointment.dart';
 import '../model/user_model.dart';
 import 'binding/home_binding.dart';
 
@@ -32,12 +35,18 @@ class UserController extends GetxController {
   final _medicines=RxList<MedicineModel>([]);
   final _userModel = Rxn<UserModel>();
   final _doctors=RxList<UserModel>([]);
+  final _doctorAppointments=RxList<AppointmentModel>([]);
+  final _userAppointments=RxList<UserAppointmentModel>([]);
 
   ///Data Status
   final loginStatus = Rx<ApiStatus>(ApiStatus.initial);
   final registerStatus = Rx<ApiStatus>(ApiStatus.initial);
   final forgetPasswordStatus = Rx<ApiStatus>(ApiStatus.initial);
   final getMyMedicinesApiStatus=Rx<ApiStatus>(ApiStatus.initial);
+  final getDoctorAppointmentsApiStatus=Rx<ApiStatus>(ApiStatus.initial);
+  final updateAppointmentStatusApiStatus=Rx<ApiStatus>(ApiStatus.initial);
+  final getUserAppointmentsApiStatus=Rx<ApiStatus>(ApiStatus.initial);
+
 
   Future<void> login({required String email, required String password}) async {
     loginStatus(ApiStatus.loading);
@@ -54,8 +63,10 @@ class UserController extends GetxController {
           Utils.showToast(title: 'Login Success', type: ToastificationType.success);
 
           loginStatus(ApiStatus.success);
-          if(_userModel.value?.userType=='user' || _userModel.value?.userType=='doctor')
+          if(_userModel.value?.userType=='user')
           RouteManager.offAll(const HomeScreen(),bindings: HomeBinding());
+          else if(_userModel.value?.userType=='doctor')
+            RouteManager.offAll(const HomeScreenDoctor(),bindings: HomeBinding());
 
         }
       } else {
@@ -93,7 +104,8 @@ class UserController extends GetxController {
     required String password,
     required String phoneNumber,
     required String gender,
-  }) async {
+  })
+  async {
     registerStatus(ApiStatus.loading);
     try {
       final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -279,7 +291,85 @@ class UserController extends GetxController {
 
     }
   }
+  
+  Future<void> getDoctorAppointments()async{
+    try{
+      _doctorAppointments.clear();
+      getDoctorAppointmentsApiStatus(ApiStatus.loading);
+      final result=await _firebaseInstance.collection('users').doc(_userModel.value?.uid).collection('my_appointments').get();
+      for(final i in result.docs){
+        if(i['status']=='pending'){
+          _doctorAppointments.add(AppointmentModel.fromJson(i.data()));
+        }
+      }
+
+      if(_doctorAppointments.isEmpty)
+        getDoctorAppointmentsApiStatus(ApiStatus.noData);
+      else
+        getDoctorAppointmentsApiStatus(ApiStatus.success);
+      
+    }catch(error){
+      Utils.printLog('Error When Get Doctor Appointment ${error.toString()}');
+      getDoctorAppointmentsApiStatus(ApiStatus.failure);
+      
+    }
+  }
+
+  Future<void> updateAppointmentStatus({required String status,required String patientId,required String time,required String date})async{
+    try{
+      updateAppointmentStatusApiStatus(ApiStatus.loading);
+      final result = await _firebaseInstance
+          .collection('users')
+          .doc(_userModel.value?.uid)
+          .collection('my_appointments')
+          .where('patient_uid', isEqualTo: patientId)
+          .get();      if(result.docs.isNotEmpty){
+        final doc=result.docs.first;
+        await doc.reference.update({'status':status});
+        await _firebaseInstance.collection('users').doc(patientId).collection('user_appointments').add({
+          'doctor_image':_userModel.value?.imageUrl,
+          'doctor_uid':_userModel.value?.uid,
+          'appointment_status':status,
+          'time':time,
+          'date':date.toString(),
+          'doctor_name':_userModel.value?.name,
+        });
+        await getDoctorAppointments();
+        updateAppointmentStatusApiStatus(ApiStatus.success);
+      }else{
+        updateAppointmentStatusApiStatus(ApiStatus.noData);
+      }
+    }catch(error){
+      Utils.printLog('Error When Get Doctor Appointment ${error.toString()}');
+      updateAppointmentStatusApiStatus(ApiStatus.failure);
+
+    }
+  }
+
+  Future<void> getUserAppointments()async{
+    try{
+      _userAppointments.clear();
+      getUserAppointmentsApiStatus(ApiStatus.loading);
+
+      final result=await _firebaseInstance.collection('users').doc(_userModel.value?.uid).collection('user_appointments').get();
+      for(final i in result.docs){
+        _userAppointments.add(UserAppointmentModel.fromJson(i.data()));
+      }
+      if(_userAppointments.isEmpty)
+        getUserAppointmentsApiStatus(ApiStatus.noData);
+      else
+        getUserAppointmentsApiStatus(ApiStatus.success);
+
+    }catch(error){
+      Utils.printLog('Error When Get User Appointments ${error.toString()}');
+      getUserAppointmentsApiStatus(ApiStatus.failure);
+
+    }
+  }
+
 
   UserModel? get userModel => _userModel.value;
   List<MedicineModel> get medicines=>_medicines;
+  List<AppointmentModel> get doctorAppointments=>_doctorAppointments;
+  List<UserAppointmentModel> get userAppointments=>_userAppointments;
 }

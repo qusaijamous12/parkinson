@@ -2,15 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../data/controller/parknson_test_controller.dart';
+import '../../../data/enum/data_status.dart';
+import '../../../shared/contstant/color_manager.dart';
+import '../../../shared/contstant/values_manager.dart';
+import '../../../shared/widget/app_bar.dart';
+import '../../../shared/widget/my_loading.dart';
 
-import '../../data/controller/parknson_test_controller.dart';
-import '../../data/enum/data_status.dart';
-import '../../shared/contstant/color_manager.dart';
-import '../../shared/contstant/style_manager.dart';
-import '../../shared/contstant/values_manager.dart';
-import '../../shared/utils/utils.dart';
-import '../../shared/widget/app_bar.dart';
-import '../../shared/widget/my_loading.dart';
 
 class ParknsonVideos extends StatefulWidget {
   const ParknsonVideos({super.key});

@@ -1,7 +1,12 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+
+import '../../../shared/contstant/values_manager.dart';
+import '../../../shared/widget/app_bar.dart';
+import '../../../shared/widget/my_button.dart';
 
 class BalanceGaitTestScreen extends StatefulWidget {
   const BalanceGaitTestScreen({super.key});
@@ -29,7 +34,9 @@ class _BalanceGaitTestScreenState extends State<BalanceGaitTestScreen> {
     });
 
     _subscription = accelerometerEvents.listen((event) {
-      final magnitude = sqrt(event.x * event.x + event.y * event.y + event.z * event.z);
+      final magnitude = sqrt(
+        event.x * event.x + event.y * event.y + event.z * event.z,
+      );
       _values.add(magnitude);
     });
 
@@ -78,51 +85,68 @@ class _BalanceGaitTestScreenState extends State<BalanceGaitTestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Balance & Gait Test')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const Text(
-              'Place your phone at waist level or hold it in your hand.\nWalk slowly in a straight line or stand still.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 40),
-
-            if (_isTesting)
-              Text(
-                '$_secondsLeft',
-                style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.blue),
-              ),
-            const SizedBox(height: 40),
-
-            ElevatedButton(
-              onPressed: _isTesting ? null : _startTest,
-              child: Text(_isTesting ? 'Testing...' : 'Start Test'),
-            ),
-
-            const SizedBox(height: 30),
-
-            if (_result != null)
-              Column(
+      body: Column(
+        children: [
+          const ScreenAppBar(title: 'balance_gait_test'),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(AppPadding.kPadding),
+              child: Column(
                 children: [
-                  const Icon(Icons.monitor_heart, size: 40, color: Colors.green),
-                  const SizedBox(height: 10),
-                  Text(
-                    _result!,
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'This test is not a medical diagnosis.\nPlease consult a doctor.',
+                   Text(
+                    'place_your_phone'.tr,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey),
+                    style:const TextStyle(fontSize: 16),
                   ),
+                  const SizedBox(height: 40),
+
+                  if (_isTesting)
+                    Text(
+                      '$_secondsLeft',
+                      style: const TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  const SizedBox(height: 40),
+
+                  MyBtn(
+                    title: _isTesting ? 'testing'.tr : 'start_test'.tr,
+                    onTap: _isTesting ? null : _startTest,
+                  ),
+
+                  const SizedBox(height: 30),
+
+                  if (_result != null)
+                    Column(
+                      children: [
+                        const Icon(
+                          Icons.monitor_heart,
+                          size: 40,
+                          color: Colors.green,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          _result!,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                         Text(
+                          'this_tests'.tr,
+                          textAlign: TextAlign.center,
+                          style:const TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
                 ],
               ),
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }

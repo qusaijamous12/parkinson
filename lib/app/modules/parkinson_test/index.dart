@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../shared/contstant/color_manager.dart';
 import '../../shared/widget/app_bar.dart';
-import '../parknson_videos/parknson_videos.dart';
 import 'balance_gait_test/index.dart';
+import 'healthy_diet_screen.dart';
+import 'parknson_videos/parknson_videos.dart';
+import 'stay_active_scren.dart';
+import 'voice_speech_test/voice_speech_test.dart';
 import 'widgets/info_card.dart';
 import 'widgets/test_card.dart';
 import 'termor_test/index.dart';
@@ -103,7 +106,7 @@ class ParkinsonTest extends StatelessWidget {
                       TestCard(
                         title: 'voice_speech',
                         description: 'analyze_your_speech',
-                        onTap: () {},
+                        onTap: ()=>Get.to(()=>const VoiceSpeechTest()),
                       ),
                       const SizedBox(height: 24),
 
@@ -115,14 +118,21 @@ class ParkinsonTest extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      const InfoCard(
-                        title: 'stay_active',
-                        description: 'exercise',
-                      ),
+                       GestureDetector(
+                         onTap: ()=>Get.to(()=>const StayActiveScreen()),
+                         child:const InfoCard(
+                          title: 'stay_active',
+                          description: 'exercise',
+
+                                               ),
+                       ),
                       const SizedBox(height: 8),
-                      const InfoCard(
-                        title: 'healthy_diet',
-                        description: 'balanced_diet',
+                      GestureDetector(
+                        onTap: ()=>Get.to(()=>const HealthyDietScreen()),
+                        child: const InfoCard(
+                          title: 'healthy_diet',
+                          description: 'balanced_diet',
+                        ),
                       ),
                       const SizedBox(height: 8),
 

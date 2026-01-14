@@ -47,17 +47,17 @@ class DrawerHomeScreen extends StatelessWidget {
               Get.to(()=>const MyMedicinesScreen());
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title:  Text('settings'.tr),
-            onTap: () {
-              // Navigate to Settings Screen
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Settings tapped')),
-              );
-            },
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.settings),
+          //   title:  Text('settings'.tr),
+          //   onTap: () {
+          //     // Navigate to Settings Screen
+          //     Navigator.pop(context);
+          //     ScaffoldMessenger.of(context).showSnackBar(
+          //       const SnackBar(content: Text('Settings tapped')),
+          //     );
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.language),
             title:  Text('language'.tr),

@@ -54,8 +54,32 @@ class AppBarHome extends StatelessWidget {
                     ),
                     if(_userController.userModel?.userType=='user')
                     GestureDetector(
-                      onTap:()=>Get.to(()=>const MyAppointmentScreen()),
-                      child:const Icon(Icons.notifications, color: Colors.white),
+                      onTap:() {
+                        _userController.getUserAppointments();
+                        Get.to(()=>const MyAppointmentScreen());
+                      },
+                      child:Stack(
+                        children: [
+                         const Icon(Icons.notifications, color: Colors.white),
+                          Obx(()=>Align(
+                            alignment: AlignmentDirectional.bottomEnd,
+                            child: Container(
+                              padding:const EdgeInsetsDirectional.all(AppPadding.kPadding/7),
+                              decoration:const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.red
+                              ),
+                              margin:const EdgeInsetsDirectional.only(bottom: 3),
+                              child:  Text(
+                                '${_userController.userAppointments.length}',
+                                style:const TextStyle(
+                                    color: Colors.white
+                                ),
+                              ),
+                            ),
+                          ))
+                        ],
+                      ),
                     ),
                   ],
                 ),

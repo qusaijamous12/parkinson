@@ -121,10 +121,101 @@ class Strings extends Translations{
       'educational':'مقاطع فيديو تعليمية وتمارين مصممة لدعم مرضى باركنسون أثناء العلاج والأنشطة اليومية.',
       'notifications':'الإشعارات',
       'doctor':'دكتور',
+      'place_your_phone':'ضع هاتفك عند مستوى الخصر أو أمسكه بيدك.\nامشِ ببطء في خط مستقيم أو قف في مكانك.',
+      'testing':'جارٍ الاختبار...',
+      'start_test':'بدء الاختبار',
+      'this_tests':'هذا الاختبار ليس تشخيصًا طبيًا.\nيرجى استشارة الطبيب.',
+      'recording_duration':'مدة التسجيل:',
+      'sec':'ثانية',
+      'estimated_speech_rate':'معدل الكلام المقدر:',
+      'words/min':'كلمة/دقيقة',
+      'note_simple':'ملاحظة: هذا اختبار محلي بسيط. للحصول على تحليل مفصل، يرجى استشارة الطبيب.',
+      'stop_recording':'إيقاف التسجيل',
+      'start_recording':'بدء التسجيل',
+      'eat_more_fruits_vegetables':'تناول المزيد من الفواكه والخضروات',
+      'include_variety':'اشمل مجموعة متنوعة من الفواكه والخضروات الملونة يوميًا.',
+      'include_whole_grains':'اشمل الحبوب الكاملة',
+      'brown_rice_oat':'الأرز البني، الشوفان، والقمح الكامل يمكن أن يحسنوا الهضم ويزيدوا الطاقة.',
+      'healthy_proteins':'البروتينات الصحية',
+      'include_fish':'اشمل السمك، اللحوم الخالية من الدهون، البيض، والبقوليات.',
+      'limit_processed_foods':'قلل من الأطعمة المصنعة',
+      'avoid_high_suga':'تجنب الأطعمة المصنعة عالية السكر والملح.',
+      'daily_stretching':'تمارين الإطالة اليومية',
+      'perform_gentle':'قم بأداء تمارين إطالة خفيفة لتحسين المرونة.',
+      'balance_exercises':'تمارين التوازن',
+      'practice_standing':'تمرن على الوقوف على ساق واحدة أو المشي من كعب إلى أصابع القدم.',
+      'strength_training':'تمارين تقوية العضلات',
+      'use_light_weight':'استخدم أوزانًا خفيفة أو أشرطة المقاومة للحفاظ على قوة العضلات.',
+      'regular_walking':'المشي المنتظم',
+      'walk_daily_improve':'امشِ يوميًا لتحسين الحركة وصحة القلب والأوعية الدموية.',
+      'appointments':'المواعيد',
+      'Chats':'الدردشات',
+      'doctor_dashboard':'لوحة تحكم الطبيب',
+      'no_appointments_yet':'لا توجد مواعيد حتى الآن!',
+      'you_currently':'لا توجد لديك مواعيد للمرضى حالياً بمجرد أن يطلب أحد المرضى موعدًا، سيظهر هنا',
+      'refresh':'تحديث',
+      'doctor_appointments':'حجوزات الدكتور',
+      'time':'الوقت',
+      'date':'التاريخ',
+      'no_messages_yet':'لا توجد رسائل بعد',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     },
     'en':{
+      'no_messages_yet':'No messages yet',
+      'date':'Date',
+
+          'time':'Time',
+      'doctor_appointments':'Doctor Appointments',
+      'refresh':'Refresh',
+      'you_currently':'You currently have no patient appointments.\n Once a patient requests, it will appear here.',
+      'no_appointments_yet':'No Appointments Yet!',
+      'doctor_dashboard':'Doctor Dashboard',
+      'Chats':'Chats',
+      'appointments':'Appointments',
+          'walk_daily_improve':'Walk daily to improve mobility and cardiovascular health.',
+      'regular_walking':'Regular Walking',
+      'use_light_weight':'Use light weights or resistance bands to maintain muscle strength.',
+      'strength_training':'Strength Training',
+      'practice_standing':'Practice standing on one leg or heel-to-toe walking.',
+      'balance_exercises':'Balance Exercises',
+      'perform_gentle':'Perform gentle stretches to improve flexibility.',
+      'daily_stretching':'Daily Stretching',
+      'avoid_high_suga':'Avoid high-sugar and high-salt processed foods.',
+      'limit_processed_foods':'Limit Processed Foods',
+      'include_fish':'Include fish, lean meats, eggs, and legumes.',
+      'healthy_proteins':'Healthy Proteins',
+      'brown_rice_oat':'Brown rice, oats, and whole wheat can improve digestion and energy.',
+      'include_whole_grains':'Include Whole Grains',
+      'include_variety':'Include a variety of colorful fruits and vegetables daily.',
+      'eat_more_fruits_vegetables':'Eat More Fruits & Vegetables',
+      'start_recording':'Start Recording',
+      'stop_recording':'Stop Recording',
+      'note_simple':'Note: This is a simple local test. For detailed analysis, consult a doctor.',
+      'words/min':'Words/Min',
+      'estimated_speech_rate':'Estimated Speech Rate:',
+      'sec':'Sec',
+          'recording_duration':'Recording Duration:',
+      'this_tests':'This test is not a medical diagnosis.\nPlease consult a doctor.',
+      'start_test':'Start Test',
+      'testing':'Testing...',
+      'place_your_phone':'Place your phone at waist level or hold it in your hand.\nWalk slowly in a straight line or stand still.',
       'doctor':'Doctor',
       'notifications':'Notifications',
       'educational':'Educational and exercise videos designed to support Parkinson’s patients during treatment and daily activities.',
