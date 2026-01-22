@@ -142,7 +142,30 @@ class _AiChatState extends State<AiChat> {
     return now.format(context);
   }
 Future<String> fetchAIResponse(String message) async {
-  return '';
+  final response = await http.post(
+    Uri.parse('https://api.openai.com/v1/chat/completions'),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization':
+      'Bearer OPENAI_API_KEY_PLACEHOLDER',
+      // Replace with your key
+    },
+    body: jsonEncode({
+      'model': 'gpt-3.5-turbo',
+      'messages': [
+        {'role': 'user', 'content': message},
+      ],
+    }),
+  );
+  if (response.statusCode == 200) {
+    final data =
+    jsonDecode(utf8.decode(response.bodyBytes)); // Ensure UTF-8 decoding
+    return data['choices'][0]['message']
+    ['content']; // Adjust based on the response structure
+  } else {
+    throw Exception('Failed to load AI response: ${response.body}');
+  }
 }
 }
+
 
