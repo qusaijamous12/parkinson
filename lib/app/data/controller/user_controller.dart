@@ -171,6 +171,7 @@ class UserController extends GetxController {
         'profile_image': gender == 'male'
             ? 'https://media.istockphoto.com/id/1351651339/video/smiling-man-with-arms-crossed-over-green-background.jpg?s=640x640&k=20&c=818Lwpd4-JxtTOeZWSSZlDray0oLp8IcM8h3ycM3A3Y='
             : 'https://t3.ftcdn.net/jpg/06/11/52/10/360_F_611521071_MnzKNI2jAH4azth12xhrQtoqavPGYvQ9.jpg',
+        'user_type':'user'
       });
     } catch (e) {
       print('There is an error in saveDataToFireStore method  ${e.toString()}');

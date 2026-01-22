@@ -98,7 +98,7 @@ class _EmailAndPasswordLoginState extends State<EmailAndPasswordLogin> {
             alignment: AlignmentDirectional.topEnd,
             child: TextButton(
               onPressed: () {
-                RouteManager.to(const ForgetPassword());
+                Get.to(const ForgetPassword());
               },
               child: Text(
                 'forgot_password'.tr,
