@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../../shared/contstant/color_manager.dart';
 import '../../shared/contstant/values_manager.dart';
+import '../../shared/secrets.dart';
 import '../../shared/widget/app_bar.dart';
 import '../chat/widget/chat_message.dart';
 
@@ -146,9 +147,7 @@ Future<String> fetchAIResponse(String message) async {
     Uri.parse('https://api.openai.com/v1/chat/completions'),
     headers: {
       'Content-Type': 'application/json',
-      'Authorization':
-      'Bearer OPENAI_API_KEY_PLACEHOLDER',
-      // Replace with your key
+      'Authorization': 'Bearer ${aiKey}',
     },
     body: jsonEncode({
       'model': 'gpt-3.5-turbo',
@@ -167,5 +166,4 @@ Future<String> fetchAIResponse(String message) async {
   }
 }
 }
-
 
