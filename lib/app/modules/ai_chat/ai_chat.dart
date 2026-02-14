@@ -6,9 +6,10 @@ import 'package:http/http.dart' as http;
 
 import '../../shared/contstant/color_manager.dart';
 import '../../shared/contstant/values_manager.dart';
-import '../../shared/secrets.dart';
 import '../../shared/widget/app_bar.dart';
 import '../chat/widget/chat_message.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 class AiChat extends StatefulWidget {
   const AiChat({super.key});
@@ -143,11 +144,16 @@ class _AiChatState extends State<AiChat> {
     return now.format(context);
   }
 Future<String> fetchAIResponse(String message) async {
+  final apiKey = dotenv.env['OPENAI_API_KEY'];
+
+  if (apiKey == null || apiKey.isEmpty) {
+    throw Exception('OPENAI_API_KEY not found in .env');
+  }
   final response = await http.post(
     Uri.parse('https://api.openai.com/v1/chat/completions'),
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ${aiKey}',
+      'Authorization': 'Bearer ${apiKey}',
     },
     body: jsonEncode({
       'model': 'gpt-3.5-turbo',
