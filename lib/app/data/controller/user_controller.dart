@@ -138,7 +138,7 @@ class UserController extends GetxController {
     }
   }
 
-  Future<void> forgetPassword({required String email}) async {
+  Future<void> forgetPassword({required String email}) async  {
     forgetPasswordStatus(ApiStatus.loading);
     await FirebaseAuth.instance
         .sendPasswordResetEmail(email: email)
