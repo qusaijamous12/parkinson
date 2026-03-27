@@ -12,7 +12,8 @@ import '../../shared/widget/my_text_field.dart';
 import 'widgets/doctor_widget.dart';
 
 class SearchDoctorsScreen extends StatefulWidget {
-  const SearchDoctorsScreen({super.key});
+  final String? doctorTypeFilter;
+  const SearchDoctorsScreen({super.key, this.doctorTypeFilter});
 
   @override
   State<SearchDoctorsScreen> createState() => _SearchDoctorsScreenState();
@@ -26,7 +27,11 @@ class _SearchDoctorsScreenState extends State<SearchDoctorsScreen> {
 
   @override
   void initState() {
-    allDoctors = _home.doctors; // OR home.users
+    final typeFilter = widget.doctorTypeFilter?.toLowerCase();
+    allDoctors = _home.doctors.where((doctor) {
+      if (typeFilter == null) return true;
+      return doctor.doctorType?.toLowerCase() == typeFilter;
+    }).toList();
     filteredUsers = allDoctors;
 
     _searchController = TextEditingController();
@@ -39,15 +44,15 @@ class _SearchDoctorsScreenState extends State<SearchDoctorsScreen> {
     final query = _searchController.text.toLowerCase();
 
     if(mounted)
-    setState(() {
-      if (query.isEmpty) {
-        filteredUsers = allDoctors;
-      } else {
-        filteredUsers = allDoctors.where((user) {
-          return user.name!.toLowerCase().contains(query);
-        }).toList();
-      }
-    });
+      setState(() {
+        if (query.isEmpty) {
+          filteredUsers = allDoctors;
+        } else {
+          filteredUsers = allDoctors.where((user) {
+            return user.name!.toLowerCase().contains(query);
+          }).toList();
+        }
+      });
   }
 
 

@@ -7,6 +7,7 @@ import 'healthy_diet_screen.dart';
 import 'parknson_videos/parknson_videos.dart';
 import 'stay_active_scren.dart';
 import 'voice_speech_test/voice_speech_test.dart';
+import 'memory_test/memory_test_screen.dart';
 import 'widgets/info_card.dart';
 import 'widgets/test_card.dart';
 import 'termor_test/index.dart';
@@ -107,6 +108,12 @@ class ParkinsonTest extends StatelessWidget {
                         title: 'voice_speech',
                         description: 'analyze_your_speech',
                         onTap: ()=>Get.to(()=>const VoiceSpeechTest()),
+                      ),
+                      const SizedBox(height: 12),
+                      TestCard(
+                        title: 'memory_test',
+                        description: 'memory_test_description',
+                        onTap: () => Get.to(() => const MemoryTestScreen()),
                       ),
                       const SizedBox(height: 24),
 

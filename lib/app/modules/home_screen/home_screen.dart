@@ -10,6 +10,7 @@ import 'drawer/drawer_home_screen.dart';
 import 'widget/chat_with_doctors/index.dart';
 import 'widget/chat_with_doctors/success.dart';
 import 'widget/our_services_widget.dart';
+import 'widget/physical_therapy/index.dart';
 import 'widget/populer_doctors/index.dart';
 import 'widget/populer_doctors/populer_doctors_loading.dart';
 import 'widget/populer_doctors/populer_doctors_success.dart';
@@ -42,6 +43,7 @@ class HomeScreen extends StatelessWidget {
                 const  ChatWithDoctors(),
                 const   OurServicesWidget(),
                 const  PopulerDoctorsWidget(),
+                const PhysicalTherapyWidget(),
               ],
             ),
           ),

@@ -127,7 +127,11 @@ class HomeController extends GetxController{
 
 
 
-  List<UserModel> get doctors=>_doctors;
+  List<UserModel> get doctors => _doctors;
+  List<UserModel> get physicalTherapists => _doctors
+      .where((doctor) =>
+          doctor.doctorType?.toLowerCase() == 'physical therapy')
+      .toList();
   List<ChatModel> get listChatModel=>_listChatModel;
 
 }

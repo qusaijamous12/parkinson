@@ -1,12 +1,13 @@
-class UserModel{
+class UserModel {
   final String uid;
   final String? name;
   final String? email;
   final String? mobileNumber;
   final String? imageUrl;
   final String? userType;
-  final String ?major;
-  final num ?rate;
+  final String? doctorType;
+  final String? major;
+  final num? rate;
 
   UserModel({
     required this.uid,
@@ -15,23 +16,22 @@ class UserModel{
     this.mobileNumber,
     this.imageUrl,
     this.userType,
+    this.doctorType,
     this.major,
-    this.rate
-});
+    this.rate,
+  });
 
-  factory UserModel.fromJson(final Map<String,dynamic> json){
+  factory UserModel.fromJson(final Map<String, dynamic> json) {
     return UserModel(
       uid: json['uid'],
       name: json['user_name'],
       email: json['email'],
       mobileNumber: json['mobile_number'],
       userType: json['user_type'],
+      doctorType: json['doctor_type'],
       imageUrl: json['profile_image'],
       major: json['major'],
-      rate: json['rate']
+      rate: json['rate'],
     );
   }
-
-
-
 }
