@@ -7,6 +7,7 @@ import 'package:sensors_plus/sensors_plus.dart';
 import '../../../shared/contstant/values_manager.dart';
 import '../../../shared/widget/app_bar.dart';
 import '../../../shared/widget/my_button.dart';
+import '../summary/test_summary_storage.dart';
 
 class BalanceGaitTestScreen extends StatefulWidget {
   const BalanceGaitTestScreen({super.key});
@@ -60,6 +61,7 @@ class _BalanceGaitTestScreenState extends State<BalanceGaitTestScreen> {
     final avg = _values.isEmpty
         ? 0
         : _values.reduce((a, b) => a + b) / _values.length;
+    final physicalScore = ((13 - avg) / 1.5).clamp(0, 1).toDouble();
 
     if (avg < 11.5) {
       _result = 'Good balance';
@@ -72,6 +74,10 @@ class _BalanceGaitTestScreenState extends State<BalanceGaitTestScreen> {
     setState(() {
       _isTesting = false;
       _secondsLeft = 0;
+    });
+
+    TestSummaryStorage.saveScores({
+      'physical': physicalScore,
     });
   }
 

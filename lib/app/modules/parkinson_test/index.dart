@@ -11,6 +11,8 @@ import 'memory_test/memory_test_screen.dart';
 import 'widgets/info_card.dart';
 import 'widgets/test_card.dart';
 import 'termor_test/index.dart';
+import 'summary/summary_screen.dart';
+import 'general_question/general_question_screen.dart';
 
 class ParkinsonTest extends StatelessWidget {
   const ParkinsonTest({super.key});
@@ -108,6 +110,18 @@ class ParkinsonTest extends StatelessWidget {
                         title: 'voice_speech',
                         description: 'analyze_your_speech',
                         onTap: ()=>Get.to(()=>const VoiceSpeechTest()),
+                      ),
+                      const SizedBox(height: 12),
+                      TestCard(
+                        title: 'general_question',
+                        description: 'general_question_description',
+                        onTap: () => Get.to(() => const GeneralQuestionScreen()),
+                      ),
+                      const SizedBox(height: 12),
+                      TestCard(
+                        title: 'test_results',
+                        description: 'summary_description',
+                        onTap: () => Get.to(() => const SummaryScreen()),
                       ),
                       const SizedBox(height: 12),
                       TestCard(

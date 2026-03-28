@@ -9,7 +9,7 @@ import 'app/shared/helper/shared_pref_helper.dart';
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: '.env');
+  await dotenv.load(fileName: '.egitv');
 
   await Firebase.initializeApp();
 

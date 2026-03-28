@@ -7,6 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../../shared/contstant/values_manager.dart';
 import '../../../shared/widget/app_bar.dart';
 import '../../../shared/widget/my_button.dart';
+import '../summary/test_summary_storage.dart';
 
 class VoiceSpeechTest extends StatefulWidget {
   const VoiceSpeechTest({super.key});
@@ -61,12 +62,17 @@ class _VoiceSpeechTestState extends State<VoiceSpeechTest> {
 
   void _analyzeLocally(File file, int durationInSeconds) {
     double speechRate = durationInSeconds > 0 ? 60 / durationInSeconds : 0;
+    final voiceScore = (durationInSeconds / 10).clamp(0, 1).toDouble();
 
     setState(() {
       _result =
       '${'recording_duration'.tr} $durationInSeconds ${'sec'.tr}\n'
           '${'estimated_speech_rate'.tr} ${speechRate.toStringAsFixed(2)} ${'words/min'.tr}\n'
           '${'note_simple'.tr}';
+    });
+
+    TestSummaryStorage.saveScores({
+      'voice': voiceScore,
     });
   }
 

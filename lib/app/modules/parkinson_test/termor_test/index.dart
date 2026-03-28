@@ -8,6 +8,7 @@ import '../../../shared/contstant/color_manager.dart';
 import '../../../shared/contstant/values_manager.dart';
 import '../../../shared/widget/app_bar.dart';
 import '../../../shared/widget/my_button.dart';
+import '../summary/test_summary_storage.dart';
 import 'widgets/instruction_card.dart';
 import 'widgets/result_card.dart';
 
@@ -64,6 +65,7 @@ class _TremorTestScreenState extends State<TremorTestScreen> {
     final avg = _values.isEmpty
         ? 0
         : _values.reduce((a, b) => a + b) / _values.length;
+    final tremorScore = ((13 - avg) / 2).clamp(0, 1).toDouble();
 
     if (avg < 11) {
       _result = 'low_tremor_detected'.tr;
@@ -76,6 +78,10 @@ class _TremorTestScreenState extends State<TremorTestScreen> {
     setState(() {
       _isTesting = false;
       _secondsLeft = 0;
+    });
+
+    TestSummaryStorage.saveScores({
+      'tremor': tremorScore,
     });
   }
 
