@@ -7,9 +7,15 @@ import '../../../shared/contstant/values_manager.dart';
 
 class MedicineCell extends StatelessWidget {
   final MedicineModel model;
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
 
-  const MedicineCell(
-      {super.key, required this.model});
+  const MedicineCell({
+    super.key,
+    required this.model,
+    required this.onEdit,
+    required this.onDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -56,20 +62,46 @@ class MedicineCell extends StatelessWidget {
             color: Colors.grey.shade600,
           ),
         ),
-        trailing: Container(
-          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-          decoration: BoxDecoration(
-            color: Colors.greenAccent.withValues(alpha: 0.2),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Text(
-            model.time,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Colors.green,
+        trailing: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            PopupMenuButton<String>(
+              onSelected: (value) {
+                if (value == 'edit') {
+                  onEdit();
+                  return;
+                }
+                onDelete();
+              },
+              itemBuilder: (context) => [
+                PopupMenuItem<String>(
+                  value: 'edit',
+                  child: Text('edit_medicine'.tr),
+                ),
+                PopupMenuItem<String>(
+                  value: 'delete',
+                  child: Text('delete_medicine'.tr),
+                ),
+              ],
+              icon: const Icon(Icons.more_vert),
             ),
-          ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+              decoration: BoxDecoration(
+                color: Colors.greenAccent.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                model.time,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

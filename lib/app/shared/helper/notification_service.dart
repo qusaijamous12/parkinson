@@ -106,14 +106,16 @@ class NotificationService {
     );
   }
 
-  static Future<void> scheduleNotification({
+  static Future<int> scheduleNotification({
     required String title,
     required String body,
     required DateTime scheduledTime,
+    int? id,
   }) async {
+    final notificationId = id ?? DateTime.now().millisecondsSinceEpoch ~/ 1000;
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+        id: notificationId,
         channelKey: 'high_importance_channel',
         title: title,
         body: body,
@@ -132,6 +134,11 @@ class NotificationService {
         allowWhileIdle: true,
       ),
     );
+
+    return notificationId;
   }
 
+  static Future<void> cancelNotification(int id) async {
+    await AwesomeNotifications().cancel(id);
+  }
 }

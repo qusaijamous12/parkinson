@@ -40,7 +40,7 @@ class AddMedicineController extends GetxController {
       scheduledDate = scheduledDate.add(const Duration(days: 1));
     }
 
-    await NotificationService.scheduleNotification(
+    final notificationId = await NotificationService.scheduleNotification(
       title: medicineNameController.text,
       body: '${'time_to_take'.tr} ${medicineNameController.text}',
       scheduledTime: scheduledDate,
@@ -52,10 +52,11 @@ class AddMedicineController extends GetxController {
     );
     final formattedDateTime = DateFormat('yyyy-MM-dd – HH:mm').format(scheduledDate);
 
-    _firebaseFireStore.collection('users').doc(uid).collection('my_drugs').add({
+    await _firebaseFireStore.collection('users').doc(uid).collection('my_drugs').add({
       'medicine_name': medicineNameController.text,
       'dosage': dosageController.text,
       'time': formattedDateTime,
+      'notification_id': notificationId,
     });
   }
 

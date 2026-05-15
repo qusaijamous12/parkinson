@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../data/controller/user_controller.dart';
 import '../../../../shared/contstant/color_manager.dart';
@@ -31,7 +32,9 @@ class _RegisterDataFormState extends State<RegisterDataForm> {
   bool hasANumber = false;
   bool atLeast8Charcter = false;
   final emailController = TextEditingController();
-  final nameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final birthDateController = TextEditingController();
   final phoneController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final _userController = Get.find<UserController>(tag: 'user_controller');
@@ -46,7 +49,12 @@ class _RegisterDataFormState extends State<RegisterDataForm> {
   @override
   void dispose() {
     passwordController.dispose();
-
+    emailController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    birthDateController.dispose();
+    phoneController.dispose();
+    confirmPasswordController.dispose();
 
     super.dispose();
   }
@@ -58,12 +66,24 @@ class _RegisterDataFormState extends State<RegisterDataForm> {
       child: Column(
         children: [
           MyTextField(
-            hintText: 'name'.tr,
+            hintText: 'first_name'.tr,
             textInputType: TextInputType.text,
-            controller: nameController,
+            controller: firstNameController,
             validate: (value) {
               if (TextUtils.isEmpty(value)) {
-                return 'name_is_required'.tr;
+                return 'first_name_required'.tr;
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 10),
+          MyTextField(
+            hintText: 'last_name'.tr,
+            textInputType: TextInputType.text,
+            controller: lastNameController,
+            validate: (value) {
+              if (TextUtils.isEmpty(value)) {
+                return 'last_name_required'.tr;
               }
               return null;
             },
@@ -79,6 +99,21 @@ class _RegisterDataFormState extends State<RegisterDataForm> {
               } else {
                 return 'please_enter_validate_email'.tr;
               }
+            },
+          ),
+          const SizedBox(height: 10),
+          MyTextField(
+            hintText: 'date_of_birth'.tr,
+            textInputType: TextInputType.datetime,
+            controller: birthDateController,
+            readOnly: true,
+            onTap: _pickBirthDate,
+            suffixIcon: const Icon(Icons.calendar_month),
+            validate: (value) {
+              if (TextUtils.isEmpty(value)) {
+                return 'birth_date_required'.tr;
+              }
+              return null;
             },
           ),
           const SizedBox(height: 10),
@@ -181,7 +216,10 @@ class _RegisterDataFormState extends State<RegisterDataForm> {
               if (_formKey.currentState?.validate() ?? false) {
                await  _userController.createAccount(
                    email: emailController.text,
-                    name: nameController.text,
+                    name: '${firstNameController.text.trim()} ${lastNameController.text.trim()}',
+                    firstName: firstNameController.text.trim(),
+                    lastName: lastNameController.text.trim(),
+                    birthDate: birthDateController.text.trim(),
                     password: confirmPasswordController.text,
                     phoneNumber: phoneController.text,
                     gender:_selectedGender.value);
@@ -209,5 +247,21 @@ class _RegisterDataFormState extends State<RegisterDataForm> {
         );
       });
     });
+  }
+
+  Future<void> _pickBirthDate() async {
+    final now = DateTime.now();
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime(now.year - 20),
+      firstDate: DateTime(1900),
+      lastDate: now,
+    );
+    if (picked != null) {
+      birthDateController.text = DateFormat('yyyy-MM-dd').format(picked);
+      if (mounted) {
+        setState(() {});
+      }
+    }
   }
 }

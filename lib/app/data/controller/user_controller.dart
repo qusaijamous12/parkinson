@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:intl/intl.dart';
 import 'package:toastification/toastification.dart';
 import '../../modules/auth/login/login.dart';
 import '../../modules/home_screen/home_screen.dart';
 import '../../modules/home_screen_doctor/home_screen_doctor.dart';
 import '../../routes/route_manager.dart';
+import '../../shared/helper/notification_service.dart';
 import '../../shared/helper/shared_pref_helper.dart';
 import '../../shared/utils/utils.dart';
 import '../enum/data_status.dart';
@@ -101,6 +104,9 @@ class UserController extends GetxController {
   Future<void> createAccount({
     required String email,
     required String name,
+    required String firstName,
+    required String lastName,
+    required String birthDate,
     required String password,
     required String phoneNumber,
     required String gender,
@@ -117,6 +123,9 @@ class UserController extends GetxController {
         await saveDataToFireStore(
           email: email,
           name: name,
+          firstName: firstName,
+          lastName: lastName,
+          birthDate: birthDate,
           imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcg4Y51XjQ-zSf87X4nUPTQzsF83eFdZswTg&s',
           phone: phoneNumber,
           uid: auth.user!.uid,
@@ -156,6 +165,9 @@ class UserController extends GetxController {
   Future<void> saveDataToFireStore({
     required String email,
     required String name,
+    required String firstName,
+    required String lastName,
+    required String birthDate,
     required String phone,
     required String uid,
     required String gender,
@@ -165,6 +177,9 @@ class UserController extends GetxController {
       await _firebaseInstance.collection('users').doc(uid).set({
         'email': email,
         'user_name': name,
+        'first_name': firstName,
+        'last_name': lastName,
+        'birth_date': birthDate,
         'mobile_number': phone,
         'image_url':imageUrl,
         'uid': uid,
@@ -244,6 +259,11 @@ class UserController extends GetxController {
         uid: user.uid,
         imageUrl: user.photoURL ?? '',
         name: user.displayName??'',
+        firstName: user.displayName?.split(' ').first ?? '',
+        lastName: user.displayName != null && user.displayName!.split(' ').length > 1
+            ? user.displayName!.split(' ').sublist(1).join(' ')
+            : '',
+        birthDate: '',
         phone: user.phoneNumber??'',
         gender: 'Male',
       );
@@ -279,7 +299,7 @@ class UserController extends GetxController {
       if(result.docs.isNotEmpty){
         _medicines.clear();
         for(var doc in result.docs){
-          _medicines.add(MedicineModel.fromJson(doc.data()));
+          _medicines.add(MedicineModel.fromJson(doc.data(), id: doc.id));
         }
       }
       getMyMedicinesApiStatus(ApiStatus.success);
@@ -290,6 +310,92 @@ class UserController extends GetxController {
       getMyMedicinesApiStatus(ApiStatus.failure);
 
 
+    }
+  }
+
+  Future<void> deleteMedicine({required MedicineModel medicine}) async {
+    try {
+      if (medicine.notificationId != null) {
+        await NotificationService.cancelNotification(medicine.notificationId!);
+      }
+
+      await _firebaseInstance
+          .collection('users')
+          .doc(_userModel.value!.uid)
+          .collection('my_drugs')
+          .doc(medicine.id)
+          .delete();
+
+      await getMyMedicines();
+      Utils.showToast(
+        title: 'medicine_deleted'.tr,
+        type: ToastificationType.success,
+      );
+    } catch (error) {
+      Utils.printLog('Error When Delete Medicine ${error.toString()}');
+      Utils.showToast(
+        title: error.toString(),
+        type: ToastificationType.error,
+      );
+    }
+  }
+
+  Future<void> updateMedicine({
+    required MedicineModel medicine,
+    required String medicineName,
+    required String dosage,
+    required TimeOfDay selectedTime,
+  }) async {
+    try {
+      final now = DateTime.now();
+      DateTime scheduledDate = DateTime(
+        now.year,
+        now.month,
+        now.day,
+        selectedTime.hour,
+        selectedTime.minute,
+      );
+
+      if (scheduledDate.isBefore(now.add(const Duration(minutes: 1)))) {
+        scheduledDate = scheduledDate.add(const Duration(days: 1));
+      }
+
+      if (medicine.notificationId != null) {
+        await NotificationService.cancelNotification(medicine.notificationId!);
+      }
+
+      final notificationId = await NotificationService.scheduleNotification(
+        title: medicineName,
+        body: '${'time_to_take'.tr} $medicineName',
+        scheduledTime: scheduledDate,
+      );
+
+      final formattedDateTime =
+          DateFormat('yyyy-MM-dd - HH:mm').format(scheduledDate);
+
+      await _firebaseInstance
+          .collection('users')
+          .doc(_userModel.value!.uid)
+          .collection('my_drugs')
+          .doc(medicine.id)
+          .update({
+        'medicine_name': medicineName,
+        'dosage': dosage,
+        'time': formattedDateTime,
+        'notification_id': notificationId,
+      });
+
+      await getMyMedicines();
+      Utils.showToast(
+        title: 'medicine_updated'.tr,
+        type: ToastificationType.success,
+      );
+    } catch (error) {
+      Utils.printLog('Error When Update Medicine ${error.toString()}');
+      Utils.showToast(
+        title: error.toString(),
+        type: ToastificationType.error,
+      );
     }
   }
   

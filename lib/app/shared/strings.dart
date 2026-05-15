@@ -36,7 +36,13 @@ class Strings extends Translations{
       'create_account':'إنشاء حساب',
       'sign':'سجّل الآن وابدأ في استكشاف كل ما يقدّمه تطبيقنا. نحن متحمسون للترحيب بك في مجتمعنا!',
       'name':'الاسم',
+      'first_name':'الاسم الأول',
+      'last_name':'اسم العائلة',
+      'date_of_birth':'تاريخ الميلاد',
       'name_is_required':'الاسم مطلوب',
+      'first_name_required':'الاسم الأول مطلوب',
+      'last_name_required':'اسم العائلة مطلوب',
+      'birth_date_required':'تاريخ الميلاد مطلوب',
       'please_enter_validate_email':'يرجى إدخال بريد إلكتروني صالح',
       'phone':'الهاتف',
       'phone_required':'رقم الهاتف مطلوب',
@@ -51,7 +57,7 @@ class Strings extends Translations{
       'find_your_doctor':'اعثر على طبيبك',
       'search':'ابحث.....',
       'chat_with_doctors':'استشر الأطباء',
-      'our_services':'خدماتنا',
+      'our_services':'خدماتنا اليومية',
       'test_your_self_now':'اختبر صحتك الآن',
       'book_now':'احجز الآن مع أفضل الأطباء',
       'populars_doctors':'اشهر الدكاترة',
@@ -66,6 +72,8 @@ class Strings extends Translations{
       'profile':'الملف الشخصي',
       'log_out':'تسجيل الخروج',
       'settings':'الإعدادات',
+      'settings_quick_access':'وصول سريع للإعدادات',
+      'settings_quick_access_description':'تحكم باللغة والملف الشخصي والأدوية وتسجيل الخروج من مكان واحد.',
       'add_medicine':'إضافة دواء',
       'medicine_information':'معلومات الدواء',
       'medicine_name':'اسم الدواء',
@@ -241,19 +249,13 @@ class Strings extends Translations{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+      'edit_medicine':'تعديل الدواء',
+      'delete_medicine':'حذف الدواء',
+      'delete_medicine_confirmation':'هل تريد حذف هذا الدواء وإلغاء التذكير المرتبط به؟',
+      'medicine_deleted':'تم حذف الدواء',
+      'medicine_updated':'تم تحديث الدواء',
+      'save_changes':'حفظ التعديلات',
+      'cancel':'إلغاء',
     },
     'en':{
       'no_messages_yet':'No messages yet',
@@ -410,6 +412,13 @@ class Strings extends Translations{
       'add_your_medicines':'Add your medicines to start tracking your doses and reminders.',
   'no_medicines_yet':'No medicines yet!',
   'my_medicines':'My Medicines',
+      'edit_medicine':'Edit Medicine',
+      'delete_medicine':'Delete Medicine',
+      'delete_medicine_confirmation':'Do you want to delete this medicine and cancel its reminder?',
+      'medicine_deleted':'Medicine deleted',
+      'medicine_updated':'Medicine updated',
+      'save_changes':'Save Changes',
+      'cancel':'Cancel',
       'medicine_reminder_scheduled':'Medicine reminder scheduled',
       'time_to_take':'Time to take',
       'please_fill_fields':'Please fill all fields',
@@ -423,6 +432,8 @@ class Strings extends Translations{
       'medicine_information':'Medicine Information',
   'add_medicine':'Add Medicine',
   'settings':'Settings',
+      'settings_quick_access':'Quick Settings Access',
+      'settings_quick_access_description':'Manage language, profile, medicines, and logout from one place.',
   'log_out':'Log Out',
       'profile':'Profile',
       'patient_care':'Patient care should be the number one priority.',
@@ -436,7 +447,7 @@ class Strings extends Translations{
       'physical_therapy':'Physical Therapy',
       'book_now':'Book now with the best doctors',
       'test_your_self_now':'Test Your Self Now',
-      'our_services':'Our Services',
+      'our_services':'Daily Services',
       'chat_with_doctors':'Chat With Doctors',
       'search':'Search.....',
       'find_your_doctor':'Find Your Doctor',
@@ -453,6 +464,12 @@ class Strings extends Translations{
       'please_enter_validate_email':'Please enter validate email',
       'name_is_required':'Name is Required',
       'name':'name',
+      'first_name':'First Name',
+      'last_name':'Last Name',
+      'date_of_birth':'Date of Birth',
+      'first_name_required':'First name is required',
+      'last_name_required':'Last name is required',
+      'birth_date_required':'Date of birth is required',
       'sign':'Sign up now and start exploring all that our app has to offer. We\'re excited to welcome you to our community!',
       'create_account':'Create Account',
       'least_special_character':'At least 1 special character',
@@ -488,3 +505,4 @@ class Strings extends Translations{
   };
 
 }
+

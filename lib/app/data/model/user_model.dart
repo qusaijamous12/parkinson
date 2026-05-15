@@ -1,6 +1,9 @@
 class UserModel {
   final String uid;
   final String? name;
+  final String? firstName;
+  final String? lastName;
+  final String? birthDate;
   final String? email;
   final String? mobileNumber;
   final String? imageUrl;
@@ -13,6 +16,9 @@ class UserModel {
     required this.uid,
     this.email,
     this.name,
+    this.firstName,
+    this.lastName,
+    this.birthDate,
     this.mobileNumber,
     this.imageUrl,
     this.userType,
@@ -25,6 +31,9 @@ class UserModel {
     return UserModel(
       uid: json['uid'],
       name: json['user_name'],
+      firstName: json['first_name'],
+      lastName: json['last_name'],
+      birthDate: json['birth_date'],
       email: json['email'],
       mobileNumber: json['mobile_number'],
       userType: json['user_type'],

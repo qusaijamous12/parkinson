@@ -19,6 +19,39 @@ class ParkinsonTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tests = [
+      {
+        'title': 'tremor_test',
+        'description': 'check_your_tremors',
+        'onTap': () => Get.to(() => const TremorTestScreen()),
+      },
+      {
+        'title': 'balance_gait_test',
+        'description': 'evaluate_your_balance',
+        'onTap': () => Get.to(() => const BalanceGaitTestScreen()),
+      },
+      {
+        'title': 'voice_speech',
+        'description': 'analyze_your_speech',
+        'onTap': () => Get.to(() => const VoiceSpeechTest()),
+      },
+      {
+        'title': 'general_question',
+        'description': 'general_question_description',
+        'onTap': () => Get.to(() => const GeneralQuestionScreen()),
+      },
+      {
+        'title': 'test_results',
+        'description': 'summary_description',
+        'onTap': () => Get.to(() => const SummaryScreen()),
+      },
+      {
+        'title': 'memory_test',
+        'description': 'memory_test_description',
+        'onTap': () => Get.to(() => const MemoryTestScreen()),
+      },
+    ];
+
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -94,40 +127,26 @@ class ParkinsonTest extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
 
-                      TestCard(
-                        title: 'tremor_test',
-                        description: 'check_your_tremors',
-                        onTap: () =>Get.to(()=>const TremorTestScreen()),
-                      ),
-                      const SizedBox(height: 12),
-                      TestCard(
-                        title: 'balance_gait_test',
-                        description: 'evaluate_your_balance',
-                        onTap: ()=>Get.to(()=>const BalanceGaitTestScreen()),
-                      ),
-                      const SizedBox(height: 12),
-                      TestCard(
-                        title: 'voice_speech',
-                        description: 'analyze_your_speech',
-                        onTap: ()=>Get.to(()=>const VoiceSpeechTest()),
-                      ),
-                      const SizedBox(height: 12),
-                      TestCard(
-                        title: 'general_question',
-                        description: 'general_question_description',
-                        onTap: () => Get.to(() => const GeneralQuestionScreen()),
-                      ),
-                      const SizedBox(height: 12),
-                      TestCard(
-                        title: 'test_results',
-                        description: 'summary_description',
-                        onTap: () => Get.to(() => const SummaryScreen()),
-                      ),
-                      const SizedBox(height: 12),
-                      TestCard(
-                        title: 'memory_test',
-                        description: 'memory_test_description',
-                        onTap: () => Get.to(() => const MemoryTestScreen()),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: tests.length,
+                        padding: EdgeInsetsDirectional.zero,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12,
+                          childAspectRatio: 0.92,
+                        ),
+                        itemBuilder: (context, index) {
+                          final test = tests[index];
+                          return TestCard(
+                            title: test['title']! as String,
+                            description: test['description']! as String,
+                            onTap: test['onTap']! as VoidCallback,
+                          );
+                        },
                       ),
                       const SizedBox(height: 24),
 

@@ -13,6 +13,8 @@ class MyTextField extends StatefulWidget {
   final String? Function(String?)? validate;
   final bool isPassword;
   final bool enabled;
+  final bool readOnly;
+  final VoidCallback? onTap;
 
   const MyTextField({
     super.key,
@@ -21,6 +23,8 @@ class MyTextField extends StatefulWidget {
     required this.controller,
     this.suffixIcon,
     this.enabled=true,
+    this.readOnly=false,
+    this.onTap,
     this.validate,
     this.isPassword=false
   });
@@ -45,6 +49,8 @@ class _MyTextFieldState extends State<MyTextField> {
         controller: widget.controller,
         keyboardType: widget.textInputType,
         enabled: widget.enabled,
+        readOnly: widget.readOnly,
+        onTap: widget.onTap,
         obscureText:widget.isPassword? showPassword:false,
         decoration: InputDecoration(
           isDense: true,

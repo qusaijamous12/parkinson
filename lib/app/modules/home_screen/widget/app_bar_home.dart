@@ -9,6 +9,7 @@ import '../../../shared/contstant/values_manager.dart';
 import '../../../shared/widget/search_text_field.dart';
 import '../../my_appointment_screen.dart';
 import '../../search_screen/index.dart';
+import '../settings/settings_screen.dart';
 
 class AppBarHome extends StatelessWidget {
   final void Function()? onTapMenu;
@@ -51,6 +52,11 @@ class AppBarHome extends StatelessWidget {
                     GestureDetector(
                       onTap:onTapLanguage,
                       child:const Icon(Icons.language, color: Colors.white),
+                    ),
+                    if(_userController.userModel?.userType=='user')
+                    GestureDetector(
+                      onTap: () => Get.to(() => const SettingsScreen()),
+                      child: const Icon(Icons.settings, color: Colors.white),
                     ),
                     if(_userController.userModel?.userType=='user')
                     GestureDetector(
