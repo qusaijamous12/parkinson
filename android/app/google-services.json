@@ -1,26 +1,36 @@
 {
   "project_info": {
-    "project_number": "881949411565",
-    "project_id": "parkinson-c9f06",
-    "storage_bucket": "parkinson-c9f06.firebasestorage.app"
+    "project_number": "855772019150",
+    "project_id": "parkinson-new",
+    "storage_bucket": "parkinson-new.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:881949411565:android:e9336fa0b42b2ccd3ae4e4",
+        "mobilesdk_app_id": "1:855772019150:android:b7a5ac916223122c08539f",
         "android_client_info": {
-          "package_name": "com.example.parknson_app"
+          "package_name": "com.parknson.doctor"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "855772019150-7c9qg1nc8kan1n7hm8mpi75opdjctbpp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyDLIfxwM4nz6_tkZLLIwAYVgqiQCSWhFdQ"
+          "current_key": "AIzaSyDpN_BBU65Frz_MrSF_xgudAy4xcmGFoXA"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "855772019150-7c9qg1nc8kan1n7hm8mpi75opdjctbpp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
